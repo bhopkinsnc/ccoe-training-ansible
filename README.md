@@ -4,26 +4,26 @@ The following is a training guide for ansible.  The guide requires some knowledg
 
 ## List of Prerequisite
 
-1. GIT Client Access Pull From Repo
-1. Docker Install
-1. Access to Internet 
+1. GIT Client and Rights to Pull From Repo
+1. Docker Install and working
+1. Access to Internet
 
 ## Git Clone Repo
 
+If you need help with git commands [help/git_commands.md](help/git_commands.md)
+
+Clone THIS Repo on the Workstation that you will be using that has docker installed and configured.
+
 https://VF-Cloud@dev.azure.com/VF-Cloud/vf_cloud_core/_git/ccoe-training-ansible
 
-Check if git is not installed do [setup/git_install.md](setup/git_install.md)
-
-If you need help with git commands [help/git_commands.md](help/git_commands.md)
 
 ## Build Docker Container 
 
-Use Guide to Build Container [here](setup/cntr_centos_ansible/README.md) 
+Use Guide to Build Container [setup/cntr_centos_ansible/README.md](setup/cntr_centos_ansible/README.md) 
 
 ## Run Docker Container
 
 Change repo root directory
-
 
 ```bash
 docker run --rm -it -h ansibleserver -v $(pwd):/ansible/playbooks cent_ansible bash
@@ -36,7 +36,7 @@ The continer should start in the /ansible/playbooks working directory and files 
 ```
 
 ```bash
-README.md  hello_world.yml  infra_files  inventory  setup
+README.md  hello_world.yml  infra_files  inventory  setup 
 ```
 
 ## Test Ansible
@@ -74,7 +74,7 @@ localhost                  : ok=2    changed=1    unreachable=0    failed=0    s
 
 If you get output like above then your ansible-playbook command worked?
 
-## It worked Now What
+## It worked SO Lets Start Learning
 
 Ansible uses YML file format configuration files to create playbooks.
 
@@ -85,7 +85,7 @@ You will be creating a new file just
 ```bash
 vi -lab_hello_world_file.yml
 or 
-nano 
+nano -lab_hello_world_file.yml
 ```
 
 ```yaml
@@ -101,6 +101,10 @@ nano
 
 ```
 
+Save File 
+
+What did I type? 
+
 * Line1 --- (in the file is a YML header)
 * Line2 - hosts: localhost (which hosts will can run the playbook)
 * Line3 gather_facts: no (ansible can discover info "facts" normally true)
@@ -110,18 +114,19 @@ nano
 * Line7 content: "hello world\n" What is in the file
 * Line8 dest: /tmp/hello_world_test.txt (copy hello world to a /tmp file)
 
-
 Run the ansible playbook that was created
 
 ```bash
 ansible-playbook -lab_hello_world_file.yml
 ```
 
-This hello_world_file playbook will create a file in /tmp/hello_world_test.txt
+This -lab_hello_world_file.yml playbook will create a file in /tmp/hello_world_test.txt
 
 ```bash
 cat /tmp/hello_world_test.txt
 ```
+
+The content should match what is in Line 7
 
 ```bash
 Hello world
@@ -129,7 +134,7 @@ Hello world
 
 ### Making Magic
 
-Lets change the file /tmp/hello_world_test.txt then run the ansible-playbook again
+Lets make a change to the file /tmp/hello_world_test.txt then run the ansible-playbook again see what happens
 
 ```bash
 echo “hello world NOT” >  /tmp/hello_world_test.txt
@@ -140,15 +145,18 @@ cat /tmp/hello_world_test.txt
 ```
 
 ```bash
+hello world NOT
+```
+
+```bash
 ansible-playbook -lab_hello_world_file.yml
 ```
 
-You will notice that there was a change
+You will notice that there was a change but what changed and why?
 
 ```bash
 localhost                  : ok=1    changed=1    unreachable=0    failed=0
 ```
-So what changed?
 
 ```bash
 cat /tmp/hello_world_test.txt
@@ -173,14 +181,14 @@ cat /tmp/hello_world_test.txt
 ```
 
 ```bash
-ansible-playbook _-ab_hello_world_file.yml --check
+ansible-playbook -lab_hello_world_file.yml --check
 ```
 
 What did or did not happen?????
 
 ## Wait there is More
 
-Let bring hello_world to a client
+Let bring hello_world to a client because loading ansible on every server and logging in them locally is not what we signed up for right.  :)
 
 * [hello_client](LABS/1.hello_client/README.md)
 * [hello_yum](LABS/2.hello_yum/README.md)
