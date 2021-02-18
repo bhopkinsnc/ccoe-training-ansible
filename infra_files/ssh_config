@@ -1,0 +1,14 @@
+Host *
+   StrictHostKeyChecking no
+   UpdateHostKeys yes
+   UserKnownHostsFile /dev/null 
+
+Host centos2201 
+   Hostname localhost
+   Port 2201
+   User root
+
+Host centos2202 
+   Hostname localhost
+   Port 2202
+   User root

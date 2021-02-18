@@ -1,0 +1,5 @@
+---
+  - hosts: localhost
+    tasks:
+    - name: Echo Hello World
+      shell: echo "hello world"
