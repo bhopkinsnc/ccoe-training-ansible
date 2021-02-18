@@ -1,7 +1,0 @@
----
-   - hosts: localhost
-     gather_facts: no
-
-     tasks:
-       - name: Echo Hello World
-         copy: content="hello world\n" dest=/tmp/hello_world_test.txt
