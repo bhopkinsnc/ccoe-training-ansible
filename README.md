@@ -56,7 +56,7 @@ README.md  hello_world.yml  help  infra_files  inventory  labs  setup
 Run the ansible help command verify if install on your local workstation.  If not install.
 
 ```bash
-ansible --version 
+[root@ansibleserver playbooks]# ansible --version 
 ```
 
 ```bash
@@ -73,7 +73,7 @@ ansible 2.9.17
 Lets run a playbook that is located in the root of the repo.
 
 ```bash
-ansible-playbook hello_world.yml -v
+[root@ansibleserver playbooks]# ansible-playbook hello_world.yml -v
 ```
 
 Look for the stdout line that has the change
@@ -108,26 +108,26 @@ Bonus:
 Run the same command without the -v do you see anything different? 
 
 ```bash
-ansible-playbook hello_world.yml
+[root@ansibleserver playbooks]# ansible-playbook hello_world.yml
 ```
 
 Now run with -vv then -vvv then -vvvv then -vvvvv 
 
 
 ```bash
-ansible-playbook hello_world.yml -vv 
+[root@ansibleserver playbooks]# ansible-playbook hello_world.yml -vv 
 ```
 
 ```bash
-ansible-playbook hello_world.yml -vvv
+[root@ansibleserver playbooks]# ansible-playbook hello_world.yml -vvv
 ```
 
 ```bash
-ansible-playbook hello_world.yml -vvvv
+[root@ansibleserver playbooks]# ansible-playbook hello_world.yml -vvvv
 ```
 
 ```bash
-ansible-playbook hello_world.yml -vvvvv
+[root@ansibleserver playbooks]# ansible-playbook hello_world.yml -vvvvv
 ```
 
 You just learn about the five debug levels but lets not get side tracked.
@@ -141,9 +141,9 @@ VI cheatsheet of commands [help/vi_cheatsheet](help/vi_cheatsheet.md))
 You will be creating a new file just 
 
 ```bash
-vi -lab_hello_world_file.yml
+[root@ansibleserver playbooks]# vi -lab_hello_world_file.yml
 or 
-nano -lab_hello_world_file.yml
+[root@ansibleserver playbooks]# nano -lab_hello_world_file.yml
 ```
 
 ```yaml
@@ -175,13 +175,13 @@ What did I type?
 Run the ansible playbook that was created
 
 ```bash
-ansible-playbook -lab_hello_world_file.yml
+[root@ansibleserver playbooks]# ansible-playbook -lab_hello_world_file.yml
 ```
 
 This -lab_hello_world_file.yml playbook will create a file in /tmp/hello_world_test.txt
 
 ```bash
-cat /tmp/hello_world_test.txt
+[root@ansibleserver playbooks]# cat /tmp/hello_world_test.txt
 ```
 
 The content should match what is in Line 7 in the -lab_hello_world_file.yml
@@ -195,11 +195,11 @@ Hello world
 Lets make a change to the file /tmp/hello_world_test.txt then run the ansible-playbook again see what happens
 
 ```bash
-echo “hello world NOT” >  /tmp/hello_world_test.txt
+[root@ansibleserver playbooks]# echo “hello world NOT” >  /tmp/hello_world_test.txt
 ```
 
 ```bash
-cat /tmp/hello_world_test.txt
+[root@ansibleserver playbooks]# cat /tmp/hello_world_test.txt
 ```
 
 ```bash
@@ -207,7 +207,7 @@ hello world NOT
 ```
 
 ```bash
-ansible-playbook -lab_hello_world_file.yml
+[root@ansibleserver playbooks]# ansible-playbook -lab_hello_world_file.yml
 ```
 
 You will notice that there was a change but what changed and why?
@@ -217,7 +217,7 @@ localhost                  : ok=1    changed=1    unreachable=0    failed=0
 ```
 
 ```bash
-cat /tmp/hello_world_test.txt
+[root@ansibleserver playbooks]# cat /tmp/hello_world_test.txt
 ```
 
 ```bash
@@ -231,18 +231,26 @@ hello world
 Change the file again then run with the --check options.
 
 ```bash
-echo “hello world NOT” >  /tmp/hello_world_test.txt
+[root@ansibleserver playbooks]# echo “hello world NOT” >  /tmp/hello_world_test.txt
 ```
 
 ```bash
-cat /tmp/hello_world_test.txt
+[root@ansibleserver playbooks]# cat /tmp/hello_world_test.txt
 ```
 
 ```bash
-ansible-playbook -lab_hello_world_file.yml --check
+[root@ansibleserver playbooks]# ansible-playbook -lab_hello_world_file.yml --check
 ```
 
 What did or did not happen?????
+
+## Lab Cleanup 
+
+Exit ansible Server
+
+```bash
+[root@ansibleserver playbooks]# exit 
+```
 
 ## Wait there is More
 
@@ -255,3 +263,4 @@ Let began with hello_ansible to understand the ansible command and then after he
 * [hello_yum_vars_list](labs/4.hello_yum_vars_list/README.md)
 * [hello_user](labs/5.hello_user/README.md)
 * [hello_user_key](labs/6.hello_user_key/README.md)
+

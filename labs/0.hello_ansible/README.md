@@ -58,7 +58,7 @@ Ansible command line interface can run ansible modules without having to create 
 The sample below uses the same copy module to create a hello_world_test.txt file with the conent "hello world"
 
 ```bash
-ansible -c local -i localhost, all -m copy -a 'dest="/tmp/hello_world_test.txt" content="hello world\n"'
+[root@ansibleserver playbooks]# ansible -c local -i localhost, all -m copy -a 'dest="/tmp/hello_world_test.txt" content="hello world\n"'
 ```
 
 ```bash
@@ -77,7 +77,7 @@ There are a lot of other options in the ansible command.  Understanding the ansi
 Here are the command options from the help -h 
 
 ```bash
-ansible -h
+[root@ansibleserver playbooks]#  ansible -h
 usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD]
                [--become-user BECOME_USER] [-K] [-i INVENTORY] [--list-hosts]
                [-l SUBSET] [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [-k]
