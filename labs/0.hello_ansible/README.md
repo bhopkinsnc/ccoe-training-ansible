@@ -187,4 +187,10 @@ Exit ansible Server
 [root@ansibleserver playbooks]# exit 
 ```
 
-* [hello_client](../labs/1.hello_client/README.md)
+What next learn about connecting to an external client
+
+* [hello_client](../1.hello_client/README.md)
+
+or  back to hello world
+
+* [hello_worldclient](../README.md)
