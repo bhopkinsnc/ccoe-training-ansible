@@ -190,7 +190,7 @@ What did or did not happen?????
 
 Let bring hello_world to a client because loading ansible on every server and logging in them locally is not what we signed up for right.  :)
 
-* [hello_client](labs/0.hello_ansible/README.md)
+* [hello_ansible](labs/0.hello_ansible/README.md)
 * [hello_client](labs/1.hello_client/README.md)
 * [hello_yum](labs/2.hello_yum/README.md)
 * [hello_yum_vars](labs/3.hello_yum_vars/README.md)
