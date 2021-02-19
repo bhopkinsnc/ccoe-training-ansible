@@ -96,8 +96,8 @@ nano -lab_hello_world_file.yml
      tasks:
        - name: Echo Hello World
          copy: 
-           content: "hello world\n" 
            dest: /tmp/hello_world_test.txt
+           content: "hello world\n" 
 
 ```
 
@@ -111,8 +111,8 @@ What did I type?
 * Line4 tasks: (tells ansible which commands to run)
 * Line5 -name: (gives the tasks a name)
 * Line6 copy: the module
-* Line7 content: "hello world\n" What is in the file
-* Line8 dest: /tmp/hello_world_test.txt (copy hello world to a /tmp file)
+* Line7 dest: /tmp/hello_world_test.txt (copy hello world to a /tmp file)
+* Line8 content: "hello world\n" What is in the file
 
 Run the ansible playbook that was created
 
@@ -190,9 +190,10 @@ What did or did not happen?????
 
 Let bring hello_world to a client because loading ansible on every server and logging in them locally is not what we signed up for right.  :)
 
-* [hello_client](LABS/1.hello_client/README.md)
-* [hello_yum](LABS/2.hello_yum/README.md)
-* [hello_yum_vars](LABS/3.hello_yum_vars/README.md)
-* [hello_yum_vars_list](LABS/4.hello_yum_vars_list/README.md)
-* [hello_user](LABS/5.hello_user/README.md)
-* [hello_user_key](LABS/6.hello_user_key/README.md)
+* [hello_client](labs/0.hello_ansible/README.md)
+* [hello_client](labs/1.hello_client/README.md)
+* [hello_yum](labs/2.hello_yum/README.md)
+* [hello_yum_vars](labs/3.hello_yum_vars/README.md)
+* [hello_yum_vars_list](labs/4.hello_yum_vars_list/README.md)
+* [hello_user](labs/5.hello_user/README.md)
+* [hello_user_key](labs/6.hello_user_key/README.md)
