@@ -36,7 +36,7 @@ The continer should start in the /ansible/playbooks working directory and files 
 ```
 
 ```bash
-README.md  hello_world.yml  infra_files  inventory  setup 
+README.md  hello_world.yml  help  infra_files  inventory  labs  setup
 ```
 
 ## Test Ansible
@@ -188,7 +188,7 @@ What did or did not happen?????
 
 ## Wait there is More
 
-Let bring hello_ansible then next hello_client. Because loading ansible on every server and logging in them locally is not what we signed up for right.  :)
+Let began with hello_ansible to understand the ansible command and then after hello_client.  Because loading ansible on every server and logging in them locally is not what we signed up for right.  :)
 
 * [hello_ansible](labs/0.hello_ansible/README.md)
 * [hello_client](labs/1.hello_client/README.md)
