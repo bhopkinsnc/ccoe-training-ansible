@@ -1,6 +1,10 @@
-# Labs Number 0 
+# Labs Number 0
 
 ## Lab Setup
+
+*_Prerequsite_*
+
+1. Use Guide to Build Container [setup/cntr_centos_ansible/README.md](setup/cntr_centos_ansible/README.md)
 
 Start ansible server
 
@@ -10,11 +14,11 @@ docker run --rm -it -h ansibleserver -v $(pwd):/ansible/playbooks cent_ansible b
 
 ## Hello Ansible
 
-In the introduction to Ansible a playbook was run.  Put what is the differance between ansible-playbook command and ansible.
+In the introduction to Ansible a playbook was run.  Put what is the differance between ansible-playbook command and ansible command.
 
 ## Command ansible-playbook
 
-The first playbook 
+Let's review the first playbook setup again.
 
 ```yaml
 1. ---
@@ -38,12 +42,13 @@ The first playbook
 * Line7 dest: /tmp/hello_world_test.txt (copy hello world to a /tmp file)
 * Line8 content: "hello world\n" What is in the file
 
-This same playbook can be run using the command line
+This same playbook above can also be ran using the command line options.
 
 ## Command ansible
 
-Ansible command line interface to be able to run ansible modules with having to create a playbook.
+Ansible command line interface can run ansible modules without having to create a playbook.
 
+The sample below uses the same copy module to create a hello_world_test.txt file with the conent "hello world"
 
 ```bash
 ansible -c local -i localhost, all -m copy -a 'dest="/tmp/hello_world_test.txt" content="hello world\n"'
@@ -60,7 +65,9 @@ ansible -c local -i localhost, all -m copy -a 'dest="/tmp/hello_world_test.txt" 
 
 ```
 
-There are a lot of other options and the ansible command is very powerfull and you will see it used throught this training.
+There are a lot of other options in the ansible command.  Understanding the ansible command is another powerfull tool you will see during this training.
+
+Here are the command options from the help -h 
 
 ```bash
 ansible -h
@@ -177,7 +184,22 @@ Some modules do not make sense in Ad-Hoc (include, meta, etc)
 
 ## Summary
 
-> A playbook is not required to run ansible modules.  The ansible command can be used call modules and pass the same arguments. The main difference is instead of the yaml format ":" separator a "=" sign is used.
+> A playbook is not required to run ansible modules.  The ansible command can be used to call modules and pass arguments. The main difference between ansible command line and ansible-playbook is the command format.  Playbooks use the yaml format with a ":" separator where command line uses the "=" sign.
+
+One last thing:
+
+That same syntext using equals '=' can be used inside an ansible playbook. Crazy right ;)
+
+```yaml
+---
+   - hosts: localhost
+     gather_facts: no
+
+     tasks:
+       - name: Echo Hello World
+         copy: dest=/tmp/hello_world_test.txt content="hello world\n"
+
+```
 
 ## Lab Cleanup 
 
@@ -187,10 +209,12 @@ Exit ansible Server
 [root@ansibleserver playbooks]# exit 
 ```
 
-What next learn about connecting to an external client
+What's next learn about connecting to an external client
 
 * [hello_client](../1.hello_client/README.md)
 
-or go back to hello world home where it all began
+or
+
+Go back to hello world home where it all began
 
 * [hello_world](/)

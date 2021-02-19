@@ -12,7 +12,7 @@ The following is a training guide for ansible.  The guide requires some knowledg
 
 If you need help with git commands [help/git_commands.md](help/git_commands.md)
 
-Clone THIS Repo on the Workstation that you will be using that has docker installed and configured.
+Clone THIS Repo on to your workstation that you will be using that has docker installed and configured.
 
 https://VF-Cloud@dev.azure.com/VF-Cloud/vf_cloud_core/_git/ccoe-training-ansible
 
@@ -23,13 +23,25 @@ Use Guide to Build Container [setup/cntr_centos_ansible/README.md](setup/cntr_ce
 
 ## Run Docker Container
 
-Change repo root directory
+Docker will be used during the training to start the ansble server and clients.
+
+Change directory back so that your current working directory is inside of ccoe-training-ansible repo.
 
 ```bash
-docker run --rm -it -h ansibleserver -v $(pwd):/ansible/playbooks cent_ansible bash
+ls
 ```
 
-The continer should start in the /ansible/playbooks working directory and files in the repo
+```bash
+README.md	hello_world.yml	help		infra_files	inventory	labs		setup
+```
+
+LINUX Start the container 
+
+```bash
+docker run --rm -it -h ansibleserver -v $(PWD):/ansible/playbooks cent_ansible bash
+```
+
+The continer should start you will be in the /ansible/playbooks working directory which is the same directory in the repo
 
 ```bash
 [root@ansibleserver playbooks]# ls
@@ -39,15 +51,28 @@ The continer should start in the /ansible/playbooks working directory and files 
 README.md  hello_world.yml  help  infra_files  inventory  labs  setup
 ```
 
+About the docker container. The container will be us
+
 ## Test Ansible
 
 Run the ansible help command verify if install on your local workstation.  If not install.
 
 ```bash
-ansible --help
+ansible --version 
+```
+
+```bash
+ansible 2.9.17
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.5 (default, Oct 14 2020, 14:45:30) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
 ```
 
 ## Run First Ansible Command
+
+Lets run a playbook that is located in the root of the repo.
 
 ```bash
 ansible-playbook hello_world.yml -v
@@ -74,7 +99,42 @@ localhost                  : ok=2    changed=1    unreachable=0    failed=0    s
 
 If you get output like above then your ansible-playbook command worked?
 
-## It worked SO Lets Start Learning
+The command you just ran ansible-playbook hello_world.yml -v as simple as it can get.  
+
+1. ansible-playbook # The command
+1. hello_world.yml # The playbook yaml file
+1. -v # Verbose output 
+
+Bonus:
+
+Run the same command without the -v do you see anything different? 
+
+```bash
+ansible-playbook hello_world.yml
+```
+
+Now run with -vv then -vvv then -vvvv then -vvvvv 
+
+
+```bash
+ansible-playbook hello_world.yml -vv 
+```
+
+```bash
+ansible-playbook hello_world.yml -vvv
+```
+
+```bash
+ansible-playbook hello_world.yml -vvvv
+```
+
+```bash
+ansible-playbook hello_world.yml -vvvvv
+```
+
+You just learn about the five debug levels but lets not get side tracked.
+
+## Lets Start Learning about Playbooks
 
 Ansible uses YML file format configuration files to create playbooks.
 
@@ -101,9 +161,9 @@ nano -lab_hello_world_file.yml
 
 ```
 
-Save File 
+Save File
 
-What did I type? 
+What did I type?
 
 * Line1 --- (in the file is a YML header)
 * Line2 - hosts: localhost (which hosts will can run the playbook)
@@ -126,7 +186,7 @@ This -lab_hello_world_file.yml playbook will create a file in /tmp/hello_world_t
 cat /tmp/hello_world_test.txt
 ```
 
-The content should match what is in Line 7
+The content should match what is in Line 7 in the -lab_hello_world_file.yml
 
 ```bash
 Hello world
@@ -166,7 +226,7 @@ cat /tmp/hello_world_test.txt
 hello world
 ```
 
-> The file was changed when we add the NOT to the end of hello world and ansible changes it back because the copy module on line 7 ensure that the contents match and when they do not it will update the file.
+> The file (/tmp/hello_world_test.txt) was changed when we added the NOT to the end of hello world line and ansible changes it back because the copy module on line 7 ensure that the contents match and when they do not it will update the file.
 
 ### Extra Credit
 
