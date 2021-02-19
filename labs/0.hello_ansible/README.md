@@ -4,7 +4,7 @@
 
 *_Prerequsite_*
 
-1. Use Guide to Build Container [setup/cntr_centos_ansible/README.md](setup/cntr_centos_ansible/README.md)
+1. Use Guide to Build Container [/setup/cntr_centos_ansible/README.md](setup/cntr_centos_ansible/README.md)
 
 Start ansible server
 
