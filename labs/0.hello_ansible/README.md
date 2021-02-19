@@ -191,6 +191,6 @@ What next learn about connecting to an external client
 
 * [hello_client](../1.hello_client/README.md)
 
-or  back to hello world
+or  back to hello world home where it all begain
 
 * [hello_worldclient](../../README.md)
