@@ -9,7 +9,7 @@
 Start ansible server
 
 ```bash
-docker run --rm -it -h ansibleserver -v $(pwd):/ansible/playbooks cent_ansible bash
+docker run --rm -it -h ansibleserver -v ${PWD}:/ansible/playbooks cent_ansible bash
 ```
 
 ## Hello Ansible
