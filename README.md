@@ -188,7 +188,7 @@ What did or did not happen?????
 
 ## Wait there is More
 
-Let bring hello_world to a client because loading ansible on every server and logging in them locally is not what we signed up for right.  :)
+Let bring hello_ansible then next hello_client. Because loading ansible on every server and logging in them locally is not what we signed up for right.  :)
 
 * [hello_ansible](labs/0.hello_ansible/README.md)
 * [hello_client](labs/1.hello_client/README.md)

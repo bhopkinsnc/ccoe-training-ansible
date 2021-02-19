@@ -186,3 +186,5 @@ Exit ansible Server
 ```bash
 [root@ansibleserver playbooks]# exit 
 ```
+
+* [hello_client](../labs/1.hello_client/README.md)
