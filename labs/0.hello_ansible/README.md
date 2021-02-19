@@ -1,4 +1,4 @@
-# Labs Number 0
+# Lab Number 0
 
 ## Lab Setup
 
