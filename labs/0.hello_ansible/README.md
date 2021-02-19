@@ -9,7 +9,14 @@
 Start ansible server
 
 ```bash
-docker run --rm -it -h ansibleserver -v ${PWD}:/ansible/playbooks cent_ansible bash
+docker run --rm -it -h ansibleserver --name ansibleserver -v $(PWD):/ansible/playbooks cent_ansible bash
+```
+
+Ensure you are in the container
+
+```bash
+[root@ansibleserver playbooks]# ls
+README.md  hello_world.yml  help  infra_files  inventory  labs  setup
 ```
 
 ## Hello Ansible

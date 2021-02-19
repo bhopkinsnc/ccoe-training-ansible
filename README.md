@@ -37,6 +37,8 @@ README.md	hello_world.yml	help		infra_files	inventory	labs		setup
 
 LINUX Start the container 
 
+About the docker container. The container named with ansibleserver (--name) with the same hostname (-h) will be used during the training. The container runs in interactive mode (-it ) and is destroyed/removed (--rm) when it is stopped or exited.
+
 ```bash
 docker run --rm -it -h ansibleserver --name ansibleserver -v $(PWD):/ansible/playbooks cent_ansible bash
 ```
@@ -50,10 +52,6 @@ The continer should start you will be in the /ansible/playbooks working director
 ```bash
 README.md  hello_world.yml  help  infra_files  inventory  labs  setup
 ```
-
-About the docker container. The container named with ansibleserver (--name) with the same hostname (-h) will be used during the training. The container runs in interactive mode (-it ) and is destroyed/removed (--rm) when it is stopped or exited. 
-
-## Test Ansible
 
 Run the ansible help command verify if install on your local workstation.  If not install.
 
