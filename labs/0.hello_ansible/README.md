@@ -6,6 +6,8 @@
 
 1. Use Guide to Build Container [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
 
+Change directory back so that your current working directory is inside of ccoe-training-ansible repo.
+
 Start ansible server
 
 ```bash
@@ -62,13 +64,13 @@ The sample below uses the same copy module to create a hello_world_test.txt file
 ```
 
 ```bash
-1. ansible  # The command
-2. -c local # The connection type local vs ssh
-3. -i localhost, # The host NOTE; the "," for a single host = Line 2
-4. all # All Groups
-5. -m copy # The ansible module == Line 6
-6. -a # module arguments 
-7. 'dest="/tmp/hello_world_test.txt" content="hello world\n"' # the arguments = line 7 and 8 combined
+1. ansible  ( The command )
+2. -c local ( The connection type local vs ssh )
+3. -i localhost, ( The host NOTE; the "," for a single host = Line 2 in above playbook )
+4. all ( All Groups )
+5. -m copy ( The ansible module == Line 6 in above playbook )
+6. -a ( module arguments  )
+7. 'dest="/tmp/hello_world_test.txt" content="hello world\n"' ( the arguments = line 7 and 8 combined in above playbook )
 
 ```
 
