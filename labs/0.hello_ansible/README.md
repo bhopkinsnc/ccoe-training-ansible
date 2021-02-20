@@ -23,7 +23,7 @@ README.md  hello_world.yml  help  infra_files  inventory  labs  setup
 
 ## Hello Ansible
 
-In the introduction to Ansible a playbook was run.  Put what is the differance between ansible-playbook command and ansible command.
+In the introduction to Ansible a playbook was run.  But what is the differance between ansible-playbook command and ansible command.
 
 ## Command ansible-playbook
 
