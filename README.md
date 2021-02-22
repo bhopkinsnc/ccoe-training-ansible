@@ -40,7 +40,7 @@ LINUX Start the container
 About the docker container. The container named with ansibleserver (--name) with the same hostname (-h) will be used during the training. The container runs in interactive mode (-it ) and is destroyed/removed (--rm) when it is stopped or exited.
 
 ```bash
-docker run --rm -it -h ansibleserver --name ansibleserver -v $(PWD):/ansible/playbooks cent_ansible bash
+docker run --rm -it -h ansibleserver --name ansibleserver -v $(PWD):/ansible/playbooks centos_ansible bash
 ```
 
 The continer should start you will be in the /ansible/playbooks working directory which is the same directory in the repo

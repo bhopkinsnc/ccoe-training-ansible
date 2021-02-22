@@ -1,0 +1,9 @@
+---
+   - hosts: all
+     gather_facts: no
+
+     tasks:
+       - name: Hello World File
+         copy: 
+           dest: /tmp/hello_world_test.txt
+           content: "hello world\n" 

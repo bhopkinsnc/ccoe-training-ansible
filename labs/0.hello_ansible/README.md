@@ -8,10 +8,12 @@
 
 Change directory back so that your current working directory is inside of ccoe-training-ansible repo.
 
-Start ansible server
+## Run Docker Containers
+
+Container ansibleserver (centos_ansible)
 
 ```bash
-docker run --rm -it -h ansibleserver --name ansibleserver -v $(PWD):/ansible/playbooks cent_ansible bash
+docker run --rm -it -h ansibleserver --name ansibleserver -v $(PWD):/ansible/playbooks centos_ansible bash
 ```
 
 Ensure you are in the container
@@ -21,7 +23,7 @@ Ensure you are in the container
 README.md  hello_world.yml  help  infra_files  inventory  labs  setup
 ```
 
-## Hello Ansible
+## LAB Hello Ansible
 
 In the introduction to Ansible a playbook was run.  But what is the differance between ansible-playbook command and ansible command.
 

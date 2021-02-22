@@ -1,15 +1,14 @@
-## Build Client Container
-
+## Build Docker Container
 
 Check if images is already created
 
 ```bash
-docker images cent_ansible
+docker images centos_ansible
 ```
 
 ```bash
 REPOSITORY     TAG       IMAGE ID       CREATED        SIZE
-cent_ansible   latest    0c38bae3c96d   25 hours ago   363MB
+centos_ansible   latest    XXXXXXXXXXXX   1 hours ago   363MB
 ```
 
 If not listed create
@@ -18,14 +17,14 @@ Change directory into training repo
 
 ```bash
 cd setup/cntr_centos_ansible
-docker build -t cent_ansible .
+docker build -t centos_ansible .
 cd ../..
 ```
 
-Verify Container 
+## Verify Container 
 
 ```bash
-docker run --rm -it cent_ansible 
+docker run --rm -it centos_ansible 
 ```
 
 ```bash

@@ -1,0 +1,5 @@
+Host *
+   StrictHostKeyChecking no
+   UpdateHostKeys no
+   UserKnownHostsFile /dev/null 
+   User notroot
