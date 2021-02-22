@@ -19,7 +19,7 @@ https://VF-Cloud@dev.azure.com/VF-Cloud/vf_cloud_core/_git/ccoe-training-ansible
 
 ## Build Docker Container 
 
-Use Guide to Build Container [setup/cntr_centos_ansible/README.md](setup/cntr_centos_ansible/README.md) 
+1. Use Guide to Build Container (centos_ansible) [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md
 
 ## Run Docker Container
 
@@ -40,7 +40,7 @@ LINUX Start the container
 About the docker container. The container named with ansibleserver (--name) with the same hostname (-h) will be used during the training. The container runs in interactive mode (-it ) and is destroyed/removed (--rm) when it is stopped or exited.
 
 ```bash
-docker run --rm -it -h ansibleserver --name ansibleserver -v $(PWD):/ansible/playbooks centos_ansible bash
+docker run --rm -it -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks centos_ansible bash
 ```
 
 The continer should start you will be in the /ansible/playbooks working directory which is the same directory in the repo
@@ -134,7 +134,7 @@ You just learn about the five debug levels but lets not get side tracked.
 
 ## Lets Start Learning about Playbooks
 
-Ansible uses YML file format configuration files to create playbooks.
+Ansible uses YAML file format configuration files to create playbooks.
 
 VI cheatsheet of commands [help/vi_cheatsheet](help/vi_cheatsheet.md)) 
 
@@ -159,7 +159,7 @@ or
 
 ```
 
-Save File
+Save File for vi :wq for nano see help
 
 What did I type?
 
