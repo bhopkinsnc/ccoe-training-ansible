@@ -141,9 +141,9 @@ VI cheatsheet of commands [help/vi_cheatsheet](help/vi_cheatsheet.md))
 You will be creating a new file just 
 
 ```bash
-[root@ansibleserver playbooks]# vi -lab_hello_world_file.yml
+[root@ansibleserver playbooks]# vi _lab_hello_world_file.yml
 or 
-[root@ansibleserver playbooks]# nano -lab_hello_world_file.yml
+[root@ansibleserver playbooks]# nano _lab_hello_world_file.yml
 ```
 
 ```yaml
@@ -175,16 +175,16 @@ What did I type?
 Run the ansible playbook that was created
 
 ```bash
-[root@ansibleserver playbooks]# ansible-playbook -lab_hello_world_file.yml
+[root@ansibleserver playbooks]# ansible-playbook _lab_hello_world_file.yml
 ```
 
-This -lab_hello_world_file.yml playbook will create a file in /tmp/hello_world_test.txt
+This _lab_hello_world_file.yml playbook will create a file in /tmp/hello_world_test.txt
 
 ```bash
 [root@ansibleserver playbooks]# cat /tmp/hello_world_test.txt
 ```
 
-The content should match what is in Line 7 in the -lab_hello_world_file.yml
+The content should match what is in Line 7 in the _lab_hello_world_file.yml
 
 ```bash
 Hello world
@@ -207,7 +207,7 @@ hello world NOT
 ```
 
 ```bash
-[root@ansibleserver playbooks]# ansible-playbook -lab_hello_world_file.yml
+[root@ansibleserver playbooks]# ansible-playbook _lab_hello_world_file.yml
 ```
 
 You will notice that there was a change but what changed and why?
@@ -239,7 +239,7 @@ Change the file again then run with the --check options.
 ```
 
 ```bash
-[root@ansibleserver playbooks]# ansible-playbook -lab_hello_world_file.yml --check
+[root@ansibleserver playbooks]# ansible-playbook _lab_hello_world_file.yml --check
 ```
 
 What did or did not happen?????
