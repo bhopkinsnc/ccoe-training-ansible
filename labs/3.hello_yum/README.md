@@ -203,7 +203,7 @@ Error response from daemon: No such container: cent02
 
 What's next learn about connecting to an external client
 
-* [hello_yum](../4.hello_yum_vars/README.md)
+* [hello_yum_vars](../4.hello_yum_vars/README.md)
 
 or
 

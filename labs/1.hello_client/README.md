@@ -240,7 +240,7 @@ Error response from daemon: No such container: cent02
 
 What's next learn about connecting to an external client
 
-* [hello_yum](../2.hello_inventory/README.md)
+* [hello_inventory](../2.hello_inventory/README.md)
 
 or
 
