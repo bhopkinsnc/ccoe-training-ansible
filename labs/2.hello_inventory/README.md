@@ -193,6 +193,7 @@ suse01 | SUCCESS => {
 ```
 
 You will see that the suse02 is not reachable you have two options. 
+
     1. remove from inventory file
     1. exclude from run on command line with -l '!host_name'
 
