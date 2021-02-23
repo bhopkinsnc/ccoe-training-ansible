@@ -249,7 +249,7 @@ cent01 | SUCCESS => {
     "changed": false, 
     "ping": "pong"
 }
-```json 
+``` 
 
 Changing the 'cent' to 'suse'
 
