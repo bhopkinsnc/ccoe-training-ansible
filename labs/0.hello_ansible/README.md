@@ -23,11 +23,13 @@ Ensure you are in the container
 README.md  hello_world.yml  help  infra_files  inventory  labs  setup
 ```
 
-## LAB Hello Ansible
+## The Lab
+
+### Hello Ansible
 
 In the introduction to Ansible a playbook was run.  But what is the differance between ansible-playbook command and ansible command.
 
-## Command ansible-playbook
+### Command ansible-playbook
 
 Let's review the first playbook setup again.
 
@@ -55,7 +57,7 @@ Let's review the first playbook setup again.
 
 This same playbook above can also be ran using the command line options.
 
-## Command ansible
+### Command ansible
 
 Ansible command line interface can run ansible modules without having to create a playbook.
 

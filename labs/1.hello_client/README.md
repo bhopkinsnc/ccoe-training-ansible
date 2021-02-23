@@ -1,4 +1,4 @@
-# Lab Number 1
+# Lab Number 0
 
 ## Lab Setup
 
@@ -20,7 +20,9 @@ docker run --rm -dP --network=ansible-training -h cent01 --name cent01 centos_ke
 docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh_config:/root/.ssh/config centos_ansible:latest bash
 ```
 
-## Login Using SSH Password 
+## The Lab
+
+### Login Using SSH Password 
 
 Login to cent01 client docker container using a passwd.  Without any options ansible will connect using the current user "root" and ask for the password "--ask-pass".
 
@@ -53,7 +55,7 @@ Exit out of ansible server
 [root@ansibleserver playbooks]# exit
 ```
 
-## Login using SSH Keys
+### Login using SSH Keys
 
 You are able to connect using a password but that is no fun exit out of the ansibleserver and attach the volume during the next docker run.
 
@@ -107,7 +109,7 @@ Host *
 5.   User notroot ( the user name that will be connecting to the client )
 ```
 
-## Verify SUDO Access
+### Verify SUDO Access
 
 Test sudo access 
 
@@ -134,7 +136,7 @@ User root may run the following commands on cent01:
 
 This indicates that the notroot user has rights to run ALL commands on all (ALL) hosts.
 
-## Run A Playbook
+### Run A Playbook
 
 In this LAB will be connecting to a remote host using ssh.  The -i option is used to connect to a hostname or an inventory file.  More on inventory files later.  The important thing to not is that the single comma after the hostname ',' tells ansible that this is a host.  
 
@@ -170,7 +172,7 @@ cent01 | CHANGED | rc=0 >>
 hello world
 ```
 
-## Extra Credit
+### Extra Credit
 
 Start a second container then run the playbook again. 
 
@@ -211,7 +213,6 @@ cent02                     : ok=1    changed=1    unreachable=0    failed=0    s
 ```
 
 Notice that the new server add cent02 was changed during that run.
-
 
 
 ## Summary
