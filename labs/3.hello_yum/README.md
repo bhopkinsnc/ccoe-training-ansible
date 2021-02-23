@@ -142,10 +142,20 @@ yum:
 
 ### Extra Credit 
 
+Exit out of ansible server to start another docker container.
+
+```bash
+[root@ansibleserver playbooks]# exit
+```
+
 Start cent02 
 
 ```bash
 docker run --rm -dP --network=ansible-training -h cent02 --name cent01 centos_keys
+```
+
+```bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
 ```
 
 Use the same playbook but this time use the inventory file which has both cent01 and cent02 listed in the cent group.
@@ -155,7 +165,7 @@ Use the same playbook but this time use the inventory file which has both cent01
 Change the state to absent in the playbook.
 
 ```bash
-[root@ansibleserver playbooks]#  vi _lab_hello_yum.yml
+[root@ansibleserver playbooks]# vi _lab_hello_yum.yml
 ```
 
 ```yaml
