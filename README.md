@@ -258,9 +258,10 @@ Let began with hello_ansible to understand the ansible command and then after he
 
 * [hello_ansible](labs/0.hello_ansible/README.md)
 * [hello_client](labs/1.hello_client/README.md)
-* [hello_yum](labs/2.hello_yum/README.md)
-* [hello_yum_vars](labs/3.hello_yum_vars/README.md)
-* [hello_yum_vars_list](labs/4.hello_yum_vars_list/README.md)
-* [hello_user](labs/5.hello_user/README.md)
-* [hello_user_key](labs/6.hello_user_key/README.md)
+* [hello_inventory](labs/2.hello_inventory/README.md)
+* [hello_yum](labs/3.hello_yum/README.md)
+* [hello_yum_vars](labs/4.hello_yum_vars/README.md)
+* [hello_yum_vars_list](labs/5.hello_yum_vars_list/README.md)
+* [hello_user](labs/6.hello_user/README.md)
+* [hello_user_key](labs/7.hello_user_key/README.md)
 

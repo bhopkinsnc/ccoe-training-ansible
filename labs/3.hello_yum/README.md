@@ -1,4 +1,4 @@
-# Lab Number 2
+# Lab Number 3
 
 ## Lab Setup
 
