@@ -1,4 +1,4 @@
-# Lab Number 0
+# Lab Number 2
 
 ## Lab Setup
 
@@ -12,64 +12,33 @@
 
 Change directory back so that your current working directory is inside of ccoe-training-ansible repo.
 
+
 ```bash
 docker run --rm -dP --network=ansible-training -h cent01 --name cent01 centos_keys
 ```
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh_config:/root/.ssh/config centos_ansible:latest bash
+docker run --rm -dP --network=ansible-training -h cent02 --name cent02 centos_keys
 ```
-
-## The Lab
-
-### Login Using SSH Password 
-
-Login to cent01 client docker container using a passwd.  Without any options ansible will connect using the current user "root" and ask for the password "--ask-pass".
-
-```bash
-[root@ansibleserver playbooks]# ansible -i cent01, all -m ping --ask-pass
-SSH password: @nsibleRocks1
-```
-
-The output from the ping will show success.
-
-```json
-centos02 | SUCCESS => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/bin/python"
-    },
-    "changed": false,
-    "ping": "pong"
-}
-```
-
-The connect uses ssh to connect to the host. If there are issues connecting using ssh -v command
-
-```bash
-[root@ansibleserver playbooks]# ssh cent01 -v
-```
-
-Exit out of ansible server
-
-```bash
-[root@ansibleserver playbooks]# exit
-```
-
-### Login using SSH Keys
-
-You are able to connect using a password but that is no fun exit out of the ansibleserver and attach the volume during the next docker run.
-
-This time will be attaching the an ssh directory that has an config file and ssh private key.  The ssh config file is set to a non-root user named "notroot"
 
 ```bash
 docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
 ```
 
-```bash
-[root@ansibleserver playbooks]# ansible -i cent01, all -m ping 
-```
+## Verify Access with SUDO
 
 ```bash
+[root@ansibleserver playbooks]# ansible -i cent01,cent02 all -m ping 
+```
+
+```json
+cent02 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
 cent01 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python"
@@ -79,145 +48,243 @@ cent01 | SUCCESS => {
 }
 ```
 
-The ssh config directory sets up the connection method and user for this server.
+## The Lab
+
+### Setup Inventory INI 
+
+We have only targeted two host cent01 and cent02.  What if you have a lot of servers that are different versions are operating systems. Inventory files will save the day.  There are two formats for inventory files ini and yaml.  We will be using the ini format in the labs because of there simplicity.
+
+An inventory file has already been created so this in just an introduction to them to get you ready for future labs.
 
 ```bash
-[root@ansibleserver playbooks]# ls /root/.ssh/
+[root@ansibleserver playbooks]# cat inventory/cent_hosts.ini 
 ```
+
+The output show the two servers cent01 and cent02 but what is that [cent] in brackets?
+
+```ini
+[cent]
+cent01
+cent02
+```
+
+The [cent] is the group the belong to
+
+For example cat out this file 
 
 ```bash
-config  id_rsa  id_rsa.pub  known_hosts
+[root@ansibleserver playbooks]# cat inventory/cent_suse.ini 
 ```
+
+```ini
+[suse]
+suse01
+suse02
+
+[cent]
+cent01
+cent02
+```
+
+This file hast two groups one for the centOS servers and the other for SUSE servers. 
+
+Lets see how this works using the ping command.
+
+Above you checked ping using the -i cent01,cent02, but lets use the inventory file now.
 
 ```bash
-[root@ansibleserver playbooks]# cat /root/.ssh/config
+[root@ansibleserver playbooks]# ansible -i inventory/cent_hosts.ini all -m ping 
 ```
+
+```json
+cent01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+cent02 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+```
+
+See it works the same as listed above.  
+
+> TRICK:  the --limit option or (-l) for short can be used to limit one host in the list.
 
 ```bash
-Host *
-   StrictHostKeyChecking no
-   UpdateHostKeys yes
-   UserKnownHostsFile /dev/null 
-   User notroot
+[root@ansibleserver playbooks]# ansible -i inventory/cent_hosts.ini all -m ping -l cent01
 ```
+
+```json
+cent01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+```
+
+### Inventory Groups
+
+Lets build some suse systems by closing the ansible session and on the docker workstation build some suse docker images and runing them.
 
 ```bash
-1. Host * ( Host that will this config "*" == all )
-2.   StrictHostKeyChecking no (ingore host key checking) 
-3.   UpdateHostKeys no (update host key in known host)
-4.   UserKnownHostsFile /dev/null ( if update know host will update a null file)
-5.   User notroot ( the user name that will be connecting to the client )
+[root@ansibleserver playbooks]# exit
 ```
 
-### Verify SUDO Access
+Use Guide to Build Container (centos_keys) [/setup/cntr_opensuse_keys/README.md](/setup/cntr_opensuse_keys/README.md)
 
-Test sudo access 
+Start the suse host
 
 ```bash
-ansible -i cent01, all --become -m shell -a 'sudo -l'
+docker run --rm -dP --network=ansible-training -h suse01 --name suse01 centos_keys
 ```
-
-```bash
-[WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
-cent01 | CHANGED | rc=0 >>
-Matching Defaults entries for root on cent01:
-    !visiblepw, always_set_home, match_group_by_gid, always_query_group_plugin, env_reset, env_keep="COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS", env_keep+="MAIL PS1 PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE", env_keep+="LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES", env_keep+="LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE", env_keep+="LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY", secure_path=/sbin\:/bin\:/usr/sbin\:/usr/bin
-
-User root may run the following commands on cent01:
-    (ALL) ALL
-```
-
-Notice the rights listed for this user.  
-
-```bash
-User root may run the following commands on cent01:
-    (ALL) ALL
-```
-
-This indicates that the notroot user has rights to run ALL commands on all (ALL) hosts.
-
-### Run A Playbook
-
-In this LAB will be connecting to a remote host using ssh.  The -i option is used to connect to a hostname or an inventory file.  More on inventory files later.  The important thing to not is that the single comma after the hostname ',' tells ansible that this is a host.  
-
-> NOTE: ip address can also be used
-
-Run the playbook from the ansibleserver to the client named cent01.  This is the docker container that is running on your local workstation. 
-
-```bash
-[root@ansibleserver playbooks]# ansible-playbook -i cent01, playbooks/lab_hello_world_file.yml -v
-```
-
-```bash
-Using /etc/ansible/ansible.cfg as config file
-
-PLAY [all] **********************************************************************************************************************************
-
-TASK [Echo Hello World] *********************************************************************************************************************
-changed: [cent01] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "checksum": "22596363b3de40b06f981fb85d82312e8c0ed511", "dest": "/tmp/hello_world_test.txt", "gid": 1000, "group": "notroot", "md5sum": "6f5902ac237024bdd0c176cb93063dc4", "mode": "0664", "owner": "notroot", "size": 12, "src": "/home/notroot/.ansible/tmp/ansible-tmp-1614024837.18-1649-96181922472341/source", "state": "file", "uid": 1000}
-
-PLAY RECAP **********************************************************************************************************************************
-cent01                     : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-
-```
-
-To verify that everything is working connect to remote client using the ansbile command shell module and cat the file see the content that was created. 
-
-```bash
-[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'cat /tmp/hello_world_test.txt'
-```
-
-```bash
-cent01 | CHANGED | rc=0 >>
-hello world
-```
-
-### Extra Credit
-
-Start a second container then run the playbook again. 
-
-```bash
-[root@ansibleserver playbooks]# exit 
-```
-
-Start a second client server 
-
-```bash
-docker run --rm -dP --network=ansible-training -h cent02 --name cent02 centos_keys
-```
-
-Start the Ansible Server
 
 ```bash
 docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
 ```
 
-Run the playbook again but add in the command the new server cent02 (-i cent01,cent02, )
+Now lets use the inventory file that has both cent and suse.  
 
 ```bash
-[root@ansibleserver playbooks]# ansible-playbook -i cent01,cent02, playbooks/lab_hello_world_file.yml -v
+[root@ansibleserver playbooks]# ansible -i inventory/cent_suse_hosts.ini all -m ping 
 ```
+
 
 ```bash
-Using /etc/ansible/ansible.cfg as config file
-
-PLAY [all] **********************************************************************************************************************************
-
-TASK [Hello World File] *********************************************************************************************************************
-ok: [cent01] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": false, "checksum": "22596363b3de40b06f981fb85d82312e8c0ed511", "dest": "/tmp/hello_world_test.txt", "gid": 1000, "group": "notroot", "mode": "0664", "owner": "notroot", "path": "/tmp/hello_world_test.txt", "size": 12, "state": "file", "uid": 1000}
-changed: [cent02] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "checksum": "22596363b3de40b06f981fb85d82312e8c0ed511", "dest": "/tmp/hello_world_test.txt", "gid": 1000, "group": "notroot", "md5sum": "6f5902ac237024bdd0c176cb93063dc4", "mode": "0664", "owner": "notroot", "size": 12, "src": "/home/notroot/.ansible/tmp/ansible-tmp-1614025768.83-56-230297983267282/source", "state": "file", "uid": 1000}
-
-PLAY RECAP **********************************************************************************************************************************
-cent01                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-cent02                     : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+docker run --rm -dP --network=ansible-training -h suse01 --name suse01 centos_keys
 ```
 
-Notice that the new server add cent02 was changed during that run.
+```json
+[root@ansibleserver playbooks]# ansible -i inventory/cent_suse_hosts.ini all -m ping 
+suse02 | UNREACHABLE! => {
+    "changed": false, 
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname suse02: Name or service not known", 
+    "unreachable": true
+}
+cent01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+cent02 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+suse01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+```
 
+You will see that the suse02 is not reachable you have two options. 
+    1. remove from inventory file
+    1. exclude from run on command line with -l '!host_name'
+
+```bash
+[root@ansibleserver playbooks]# ansible -i inventory/cent_suse_hosts.ini all -m ping -l '!suse02'
+```
+
+```json
+cent01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+cent02 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+suse01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+```
+
+### Extra Credit
+
+Host groups are cool but lets get an idea how that can be used.
+
+let look at the ansible command and focus on the 'all' in the commmand after the inventory file.  What is all? That is a builtin default group for all host. However what if it is changed to cent. 
+
+```bash
+[root@ansibleserver playbooks]# ansible -i inventory/cent_suse_hosts.ini cent -m ping 
+```
+
+```json
+cent02 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+cent01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+```json 
+
+Changing the 'cent' to 'suse'
+
+```bash
+[root@ansibleserver playbooks]# ansible -i inventory/cent_suse_hosts.ini suse -m ping 
+```
+
+```json
+suse02 | UNREACHABLE! => {
+    "changed": false, 
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname suse02: Name or service not known", 
+    "unreachable": true
+}
+suse01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+```
+
+In a playbook the all is at the hosts section by changing the all to cent or suse would only run the host listed in the inventory file.
+
+```yaml
+---
+   - hosts: all
+     gather_facts: no
+
+```
 
 ## Summary
 
-> During this LAB you have learned to connect to another host using the -i option and run a playbook.  
+> During this LAB you have learned about inventory files and groups. The all group is always there but creating groups help orginize your inventory.  See https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html 
+
 
 ## Lab Cleanup 
 
@@ -228,19 +295,20 @@ Exit ansible Server
 ```
 
 ```bash
-docker stop cent01 cent02
+docker stop cent01 cent02 suse01
 ```
 
 Stop conntainers, note that if you did not do the extra credit cent02
 
 ```bash
 cent01
-Error response from daemon: No such container: cent02
+cent02
+suse01
 ```
 
 What's next learn about connecting to an external client
 
-* [hello_yum](../2.hello_yum/README.md)
+* [hello_yum](../3.hello_yum/README.md)
 
 or
 

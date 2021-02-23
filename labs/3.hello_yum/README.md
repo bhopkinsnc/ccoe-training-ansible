@@ -98,7 +98,7 @@ git-1.8.3.1-23.el7_8.x86_64
 
 This installed one package on remote server but what about more than one package?
 
-## Install more than one package
+### Install more than one package
 
 Edit the playbook and add additional packages. You will notice that we are adding a few more packages each with a dash "-" in front of the name.  This indicates these are a list. More list in feature labs.
 
@@ -140,7 +140,18 @@ yum:
    - namp
 ```
 
-## Removing packages
+### Extra Credit 
+
+Start cent02 
+
+```bash
+docker run --rm -dP --network=ansible-training -h cent02 --name cent01 centos_keys
+```
+
+Use the same playbook but this time use the inventory file which has both cent01 and cent02 listed in the cent group.
+
+
+### Removing packages
 
 Change the state to absent in the playbook.
 
@@ -155,7 +166,7 @@ Change the state to absent in the playbook.
 Now run the playbook with a --check option  
 
 ```bash
-[root@ansibleserver playbooks]# ansible-playbook -i cent01, _lab_hello_yum.yml -v --check
+[root@ansibleserver playbooks]# ansible-playbook -i inventory/cent_hosts.ini _lab_hello_yum.yml -v --check
 ```
 
 The --check command will show that it will delete the packages
@@ -165,7 +176,7 @@ Run again to delete without the --check to delete.  Think about the --check as a
 > NOTE: not all ansible module can support --check 
 
 ```bash
-[root@ansibleserver playbooks]# ansible-playbook -i cent01, _lab_hello_yum.yml -v
+[root@ansibleserver playbooks]# ansible-playbook -i inventory/cent_hosts.ini _lab_hello_yum.yml -v
 ```
 
 ## Summary
@@ -181,18 +192,19 @@ Exit ansible Server
 ```
 
 ```bash
-docker stop cent01 
+docker stop cent01 cent02
 ```
 
 Stop conntainers, note that if you did not do the extra credit cent02
 
 ```bash
 cent01
+Error response from daemon: No such container: cent02
 ```
 
 What's next learn about connecting to an external client
 
-* [hello_yum](../3.hello_yum_vars/README.md)
+* [hello_yum](../4.hello_yum_vars/README.md)
 
 or
 
