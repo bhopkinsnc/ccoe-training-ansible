@@ -26,7 +26,7 @@ docker run --rm -it --network=ansible-training -h ansibleserver --name ansiblese
 [root@ansibleserver playbooks]# ansible -i cent01, all -m ping 
 ```
 
-```bash
+```json
 cent01 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python"
@@ -150,7 +150,6 @@ docker run --rm -dP --network=ansible-training -h cent02 --name cent01 centos_ke
 
 Use the same playbook but this time use the inventory file which has both cent01 and cent02 listed in the cent group.
 
-
 ### Removing packages
 
 Change the state to absent in the playbook.
@@ -181,7 +180,7 @@ Run again to delete without the --check to delete.  Think about the --check as a
 
 ## Summary
 
-> During this LAB you have leaned host to use an ansible module like yum to install a package. Then add more pckages using list to loop for more than one package.   
+> During this LAB you have leaned host to use an ansible module like yum to install a package. Then add more pckages using list to loop for more than one package.
 
 ## Lab Cleanup 
 
