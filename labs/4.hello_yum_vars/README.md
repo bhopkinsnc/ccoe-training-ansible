@@ -256,12 +256,11 @@ Stop conntainers, note that if you did not do the extra credit cent02
 
 ```bash
 cent01
-Error response from daemon: No such container: cent02
 ```
 
 What's next learn about connecting to an external client
 
-* [hello_yum_vars](../5.hello_yum_vars_list/README.md)
+* [hello_yum_vars_list](../5.hello_yum_vars_list/README.md)
 
 or
 
