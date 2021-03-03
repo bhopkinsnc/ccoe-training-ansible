@@ -1,1 +1,230 @@
-# Under Construction
+# Lab Number 4
+
+## Lab Setup
+
+*_Prerequsite_*
+
+1. Use Guide to Build Container (centos_ansible) [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
+1. Use Guide to Build Container (centos_keys) [/setup/cntr_centos_keys/README.md](/setup/cntr_centos_keys/README.md)
+1. Create Docker Network (ansible-network) [/setup/docker_network/README.md](/setup/docker_network/README.md)
+
+## Start Hosts
+
+Change directory back so that your current working directory is inside of ccoe-training-ansible repo.
+
+```bash
+docker run --rm -dP --network=ansible-training -h cent01 --name cent01 centos_keys
+```
+
+```bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
+```
+
+## Verify Access with SUDO
+
+```bash
+[root@ansibleserver playbooks]# ansible -i cent01, all -m ping 
+```
+
+```json
+cent01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+```
+
+Test sudo access 
+
+```bash
+[root@ansibleserver playbooks]# ansible -i cent01, all --become -m shell -a 'sudo -l'
+```
+
+Notice the rights listed for this user.  
+
+```bash
+User root may run the following commands on cent01:
+    (ALL) ALL
+```
+
+## The Lab
+
+### Yum Vars
+
+Before you run the playbook lets check if the package is installed.
+
+```bash
+[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep git'
+```
+
+If the package is already installed remove it before next step.
+
+```bash
+[root@ansibleserver playbooks]# ansible -i cent01, all -m yum -a "name=git state=absent" -b --become-method=sudo
+```
+
+Use vi or nano to create _lab_hello_yum.yml file
+
+```bash
+[root@ansibleserver playbooks]# vi _lab_hello_yum_vars.yml
+```
+
+```yaml
+---
+   - hosts: all 
+     gather_facts: no
+     become: yes
+     become_method: sudo
+
+     tasks:
+       - name: yum package install
+         yum:
+           name: "{{ yum_package_name }}"
+           state: present
+```
+
+
+```bash
+[root@ansibleserver playbooks]# ansible-playbook -i cent01, _lab_hello_yum_vars.yml -e yum_package_name=git
+```
+
+Check if package is installed 
+
+```bash
+[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep git'
+```
+
+```bash
+cent01 | CHANGED | rc=0 >>
+git-1.8.3.1-23.el7_8.x86_64
+```
+
+This installed one package on remote server using a varable at command line -e.
+
+## Vars in inv file
+
+You can add a vars in the inventory file and not on the command line. 
+
+```bash
+[root@ansibleserver playbooks]# vi _lab_hello_clients.ini
+```
+
+Add to file
+
+```ini
+[all]
+cent01
+
+[all:vars]
+yum_package_name=nmap
+```
+
+Run the ansible playbook but now will pull the var from the inv file 
+
+NOTE: the -e option is not needed because the var is listed in the ini file for the group
+
+```bash
+[root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml
+```
+
+Check if package is installed from the inventory file 
+
+```bash
+[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep nmap'
+```
+
+## Vars in Playbook
+
+Use vi or nano to edit _lab_hello_yum.yml file adding a vars 
+
+```bash
+[root@ansibleserver playbooks]# vi _lab_hello_yum_vars.yml
+```
+
+Add the vars infomariton to the playbook
+
+```yaml
+   vars:
+     yum_package_name: lsof
+
+```
+
+The finished playbook should look like below.
+
+```yaml
+---
+   - hosts: all 
+     gather_facts: no
+     become: yes
+     become_method: sudo
+
+     vars:
+       yum_package_name: lsof
+
+     tasks:
+       - name: yum package install
+         yum:
+           name: "{{ yum_package_name }}"
+           state: present
+```
+
+Run the ansible playbook but now will pull the var from the inv file 
+
+NOTE: the -e option is not needed because the var is listed in the ini file for the group
+
+```bash
+[root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml -v
+```
+
+What package was loaded the one in the inventory file or in the playbook?
+
+## Extra Credit
+
+### To override the ini vars file and install another package
+
+To add another package can run the command again with a different name on the command line
+
+```bash
+[root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml -e yum_package_name=mutt -v
+```
+
+What package got installed (mutt) because passing vars at commandline has precedences. 
+
+## Summary
+
+> During this LAB you have leaned how to pass vars using three different methods (commandline,inventoryfile, playbook) host to use an ansible module like yum to install a package. Then add more pckages using list to loop for more than one package.  There is an order that variables are pulled from inventory 
+
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
+
+Take-away: if you are going to use variables in your inventory files then try not to use vars in the playbook because they have precedence. 
+
+## Lab Cleanup 
+
+Exit ansible Server
+
+```bash
+[root@ansibleserver playbooks]# exit 
+```
+
+```bash
+docker stop cent01
+```
+
+Stop conntainers, note that if you did not do the extra credit cent02
+
+```bash
+cent01
+Error response from daemon: No such container: cent02
+```
+
+What's next learn about connecting to an external client
+
+* [hello_yum_vars](../5.hello_yum_vars_list/README.md)
+
+or
+
+Go back to hello world home where it all began
+
+* [hello_world](/)
