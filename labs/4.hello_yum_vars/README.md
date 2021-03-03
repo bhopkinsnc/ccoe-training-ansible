@@ -56,14 +56,16 @@ User root may run the following commands on cent01:
 Before you run the playbook lets check if the package is installed.
 
 ```bash
-[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep git'
+[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep rsync'
 ```
 
 If the package is already installed remove it before next step.
 
 ```bash
-[root@ansibleserver playbooks]# ansible -i cent01, all -m yum -a "name=git state=absent" -b --become-method=sudo
+[root@ansibleserver playbooks]# ansible -i cent01, all -m yum -a "name=rsync state=absent" -b --become-method=sudo
 ```
+
+> NOTE: During this lab if you need to startover can use the command above to remove a package or just stop/start the docker container.
 
 Use vi or nano to create _lab_hello_yum.yml file
 
@@ -90,7 +92,7 @@ Use vi or nano to create _lab_hello_yum.yml file
 [root@ansibleserver playbooks]# ansible-playbook -i cent01, _lab_hello_yum_vars.yml -e yum_package_name=rsync 
 ```
 
-Check if package is installed 
+Check if package is installed
 
 ```bash
 [root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep rsync'
@@ -101,7 +103,7 @@ cent01 | CHANGED | rc=0 >>
 rsync-3.1.2-10.el7.x86_64
 ```
 
-This installed one package on remote server using a varable at command line -e.
+This installed one package on remote server using a varable -e "{{ yum_pakage_name }}" at command line using the -e | --extra-vars
 
 ## Vars in inv file
 
@@ -121,15 +123,15 @@ cent01
 yum_package_name=nmap
 ```
 
-Run the ansible playbook but now will pull the var from the inv file 
+Run the ansible playbook but now will pull the var from the inv file.
 
-NOTE: the -e option is not needed because the var is listed in the ini file for the group
+> NOTE: the -e option is not needed because the package name has been added to the variable yum_package_name=nmap in the ini file.
 
 ```bash
 [root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml 
 ```
 
-Check if package is installed from the inventory file 
+Check if package is installed from the inventory file.
 
 ```bash
 [root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep nmap'
@@ -137,13 +139,13 @@ Check if package is installed from the inventory file
 
 ## Vars in Playbook
 
-Use vi or nano to edit _lab_hello_yum.yml file adding a vars 
+Use vi or nano to edit _lab_hello_yum.yml file adding a vars to the playbook.
 
 ```bash
 [root@ansibleserver playbooks]# vi _lab_hello_yum_vars.yml
 ```
 
-Add the vars infomariton to the playbook
+Add the vars infomariton to the playbook.
 
 ```yaml
    vars:
@@ -170,15 +172,13 @@ The finished playbook should look like below.
            state: present
 ```
 
-Run the ansible playbook but now will pull the var from the inv file 
-
-NOTE: the -e option is not needed because the var is listed in the ini file for the group
+Run the ansible playbook the "lsof" package will get loaded not the "nmap" that is asigned to the yum_package_name var from the inv file.
 
 ```bash
 [root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml 
 ```
 
-Check if package is installed from the playbook var listed in the file 
+Check if package "lsof" package is installed from the vars added to the playbook file.
 
 ```bash
 [root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep lsof'
@@ -191,7 +191,7 @@ lsof-4.87-6.el7.x86_64
 
 ### Change the package in Inventory File
 
-You can add a vars in the inventory file and not on the command line. 
+Lets say you want to change the package that you want to load. Where do you change it? Let's try to change the package name in the inventory file. 
 
 ```bash
 [root@ansibleserver playbooks]# vi _lab_hello_clients.ini
@@ -207,7 +207,6 @@ cent01
 yum_package_name=mutt
 ```
 
-
 ```bash
 [root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml -v
 ```
@@ -216,15 +215,15 @@ What package was loaded the one in the inventory file or in the playbook and why
 
 ## Extra Credit
 
-### To override the ini vars file and install another package
+### To override the ini vars and playbook vars
 
-To add another package can run the command again with a different name on the command line
+To add another package can run the command again with a different name on the command line.
 
 ```bash
 [root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml -e yum_package_name=mutt -v
 ```
 
-What package got installed (mutt) because passing vars at commandline has precedences. 
+What package got installed answer (mutt). Why because passing vars at commandline has precedences over inventory files are playbooks.
 
 ## Summary
 
@@ -232,15 +231,15 @@ What package got installed (mutt) because passing vars at commandline has preced
 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
 
-Take-away: if you are going to use variables in your inventory files then try not to use vars in the playbook because they have precedence. 
+Take-away: if you are going to use variables in your inventory files then try not to use vars in the playbook because they have precedence.
 
 1. CommandLine Values
 2. Playbook vars
 3. Inventory Group_Vars
 
-NOTE: the ansible website list least to greater with commandline the greatest. Above just reversed order. 
+> NOTE: the ansible website list least to greater with commandline the greatest. Above just reversed order.
 
-## Lab Cleanup 
+## Lab Cleanup
 
 Exit ansible Server
 
