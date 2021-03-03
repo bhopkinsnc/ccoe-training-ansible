@@ -102,7 +102,8 @@ Update the playbook to switching to a yum_packages_names var file.
          yum:
            name: "{{ item }}"
            state: present
-         with_items: "{{ yum_package_names }}"
+         with_items: 
+           - "{{ yum_package_names_list }}"
 ```
 
 ## Create Inventory file
@@ -112,16 +113,18 @@ Update the playbook to switching to a yum_packages_names var file.
 ```
 
 ```yaml
-yum_package_names:
+yum_package_names_list:
   - rsync 
   - mutt
 ```
 
-Run to install packages from list file passwd at the command line.
+Run to install packages from list file passwd at the command line.  The var_package_names_list in the file is the same name as the with_items.  
 
 ```bash
 [root@ansibleserver playbooks]# ansible-playbook -i cent01, _lab_hello_yum_vars_list.yml -e @_lab_yum_packages_names_list.yml
 ```
+
+You should see not change because a list is a list weather it is from a vars file or a list inside the playbook.
 
 ## Add another package to list
 
@@ -130,7 +133,7 @@ Run to install packages from list file passwd at the command line.
 ```
 
 ```yaml
-yum_package_names:
+yum_package_names_list:
   - rsync
   - mutt
   - nmap
@@ -141,6 +144,8 @@ Run again to install nmap packages from list.
 ```bash
 [root@ansibleserver playbooks]# ansible-playbook -i cent01, _lab_hello_yum_vars_list.yml -e @_lab_yum_packages_names_list.yml
 ```
+
+The new package nmap will install.
 
 ## Extra Credit
 
@@ -164,17 +169,62 @@ Start the ansible workstation
 docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
 ```
 
-Use the same playbook but this time use the inventory file which has both cent01 and cent02 listed in the cent group.
+Add vars to the playbook.
 
-Run again to install nmap packages from list.
+Update the playbook to switching to a yum_packages_names var file.
+
+```bash
+[root@ansibleserver playbooks]# vi _lab_hello_yum_vars_list.yml
+```
+
+```yaml
+     vars:
+       yum_package_names_list_vars: 
+         - vim
+         - nano
+```
+
+```yaml
+        with_items: 
+           - "{{ yum_package_names_list }}"
+           - "{{ yum_package_names_list_vars }}"
+```
+
+The final playbook should look like.
+
+```yaml
+---
+   - hosts: "{{ variable_hosts | default('clients') }}"
+     gather_facts: no
+     become: yes
+     become_method: sudo
+     
+     vars:
+       yum_package_names_list_vars: 
+         - vim
+         - nano
+
+     tasks:
+       - name: yum package install
+         yum:
+           name: "{{ item }}"
+           state: present
+         with_items: 
+           - "{{ yum_package_names_list }}"
+           - "{{ yum_package_names_list_vars }}"
+```
+
+Use the same playbook but this time use call both cent01 and cent02. 
 
 ```bash
 [root@ansibleserver playbooks]# ansible-playbook -i cent01,cent02 _lab_hello_yum_vars_list.yml -e @_lab_yum_packages_names_list.yml
 ```
 
+What packages got installed. List can be combined from inventory inside of playbook and listed under with_items. 
+
 ## Summary
 
-> During this LAB you created var list of files.  A vars file _lab_yum_packages_names_list.yml was created that is passed with the -e on commandline. Add a package to the list and then added a new another server to update two hosts. 
+> During this LAB you created var list of files.  A vars file _lab_yum_packages_names_list.yml was created that is passed with the -e on commandline. Add a package to the list and then added a new another server to update two hosts. Multiple variables of list can be combined and used with_items.  
 
 ## Lab Cleanup
 
