@@ -33,6 +33,8 @@ SSH password: @nsibleRocks1
 
 The output from the ping will show success.
 
+> NOTE: the ping is NOT an ICMP ping like the host command ping.  An ansible ping connects to the host using the login creds.  When using the ping command in ansible you are verifing network connectivity and login rights to that target host.
+
 ```json
 centos02 | SUCCESS => {
     "ansible_facts": {

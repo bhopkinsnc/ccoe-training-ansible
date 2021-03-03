@@ -27,11 +27,6 @@ docker run --rm -it --network=ansible-training -h ansibleserver --name ansiblese
 ```
 
 ```json
-cent01 | SUCCESS => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/bin/python"
-    }, 
-    "changed": false, 
     "ping": "pong"
 }
 ```
@@ -111,6 +106,7 @@ Update the playbook to switching to a yum_packages_names var file.
 ```bash
 [root@ansibleserver playbooks]# vi _lab_yum_packages_names_list.yml
 ```
+> NOTE: to create a list in yaml set the name of the list.  In this case it is yum_package_names_list:.  Then make sure two spaces and - then the item in the list.  The format and spaces is important working with yaml. 
 
 ```yaml
 yum_package_names_list:
@@ -119,6 +115,8 @@ yum_package_names_list:
 ```
 
 Run to install packages from list file passwd at the command line.  The var_package_names_list in the file is the same name as the with_items.  
+
+> NOTE: the @ before the name tells ansible that the extra var is a file.  So make sure the "@" is the first character when using a variable file on command line. (@_FILE_NAME.yaml)
 
 ```bash
 [root@ansibleserver playbooks]# ansible-playbook -i cent01, _lab_hello_yum_vars_list.yml -e @_lab_yum_packages_names_list.yml
