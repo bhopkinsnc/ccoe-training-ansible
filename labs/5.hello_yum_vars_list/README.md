@@ -117,7 +117,7 @@ yum_package_names:
   - mutt
 ```
 
-Run to install packages from list.
+Run to install packages from list file passwd at the command line.
 
 ```bash
 [root@ansibleserver playbooks]# ansible-playbook -i cent01, _lab_hello_yum_vars_list.yml -e @_lab_yum_packages_names_list.yml
