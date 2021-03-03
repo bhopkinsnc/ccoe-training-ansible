@@ -87,18 +87,18 @@ Use vi or nano to create _lab_hello_yum.yml file
 
 
 ```bash
-[root@ansibleserver playbooks]# ansible-playbook -i cent01, _lab_hello_yum_vars.yml -e yum_package_name=git
+[root@ansibleserver playbooks]# ansible-playbook -i cent01, _lab_hello_yum_vars.yml -e yum_package_name=rsync 
 ```
 
 Check if package is installed 
 
 ```bash
-[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep git'
+[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep rsync'
 ```
 
 ```bash
 cent01 | CHANGED | rc=0 >>
-git-1.8.3.1-23.el7_8.x86_64
+rsync-3.1.2-10.el7.x86_64
 ```
 
 This installed one package on remote server using a varable at command line -e.
@@ -126,7 +126,7 @@ Run the ansible playbook but now will pull the var from the inv file
 NOTE: the -e option is not needed because the var is listed in the ini file for the group
 
 ```bash
-[root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml
+[root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml 
 ```
 
 Check if package is installed from the inventory file 
@@ -175,10 +175,44 @@ Run the ansible playbook but now will pull the var from the inv file
 NOTE: the -e option is not needed because the var is listed in the ini file for the group
 
 ```bash
+[root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml 
+```
+
+Check if package is installed from the playbook var listed in the file 
+
+```bash
+[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep lsof'
+```
+
+```bash
+cent01 | CHANGED | rc=0 >>
+lsof-4.87-6.el7.x86_64
+```
+
+### Change the package in Inventory File
+
+You can add a vars in the inventory file and not on the command line. 
+
+```bash
+[root@ansibleserver playbooks]# vi _lab_hello_clients.ini
+```
+
+Change the nmap to the application mutt
+
+```ini
+[all]
+cent01
+
+[all:vars]
+yum_package_name=mutt
+```
+
+
+```bash
 [root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml -v
 ```
 
-What package was loaded the one in the inventory file or in the playbook?
+What package was loaded the one in the inventory file or in the playbook and why?
 
 ## Extra Credit
 
@@ -199,6 +233,12 @@ What package got installed (mutt) because passing vars at commandline has preced
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
 
 Take-away: if you are going to use variables in your inventory files then try not to use vars in the playbook because they have precedence. 
+
+1. CommandLine Values
+2. Playbook vars
+3. Inventory Group_Vars
+
+NOTE: the ansible website list least to greater with commandline the greatest. Above just reversed order. 
 
 ## Lab Cleanup 
 
