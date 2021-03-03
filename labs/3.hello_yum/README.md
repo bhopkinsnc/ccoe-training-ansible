@@ -69,14 +69,14 @@ Use vi or nano to create _lab_hello_yum.yml file
      tasks:
        - name: yum package install
          yum:
-           name: git
+           name: rsync
            state: present
 ```
 
 Before you run the playbook lets check if the package is installed.
 
 ```bash
-[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep git'
+[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep rsync'
 ```
 
 Run new playbook created to install git package using yum package manager.
@@ -88,12 +88,12 @@ Run new playbook created to install git package using yum package manager.
 Run the check again it should be installed.
 
 ```bash
-[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep git'
+[root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep rsync'
 ```
 
 ```bash
 cent01 | CHANGED | rc=0 >>
-git-1.8.3.1-23.el7_8.x86_64
+rsync-3.1.2-10.el7.x86_64
 ```
 
 This installed one package on remote server but what about more than one package?
@@ -117,8 +117,7 @@ Edit the playbook and add additional packages. You will notice that we are addin
        - name: yum package install
          yum:
            name:
-            - git
-            - mutt
+            - rsync
             - nmap
            state: present
 ```
@@ -131,12 +130,11 @@ By changing the name: git to an array list ansible will loop through and install
 
 ```yaml
 yum:
-  name: git
+  name: rsync
 
 yum:
   name:
-   - git
-   - mutt
+   - rsync
    - namp
 ```
 
@@ -151,8 +149,10 @@ Exit out of ansible server to start another docker container.
 Start cent02 
 
 ```bash
-docker run --rm -dP --network=ansible-training -h cent02 --name cent01 centos_keys
+docker run --rm -dP --network=ansible-training -h cent02 --name cent02 centos_keys
 ```
+
+Start the ansible workstation
 
 ```bash
 docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
