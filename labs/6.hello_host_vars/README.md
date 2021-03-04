@@ -167,7 +167,7 @@ changed: [lab-cent02] => (item=[u'lsof', u'nmap'])
 
 ## Extra Credit
 
-Add a debug task to the playbook using a feature called tags.  Tags allow you to run only the tasks that have been taged that that value. 
+Add a debug task to the playbook using a feature called tags.  Tags allow you to run only the tasks that have been tagged that that value.
 
 ```bash
 [root@ansibleserver playbooks]# vi _lab_hello_host_vars.yml
@@ -225,7 +225,7 @@ lab-cent02 debug_msg=inventoryfile_cent02
 
 Add another file to the lab-cent02 system.  
 
-> More that one file can be added to a directory. And it can be named anything just make sure it ends with .yml or .json.  
+> More than one file can be added to a directory. And it can be named anything just make sure it ends with .yml or .json.  
 
 ```bash
 [root@ansibleserver playbooks]# vi inventory/host_vars/lab-cent02/_lab_debug.yml

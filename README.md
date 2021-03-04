@@ -256,12 +256,11 @@ Exit ansible Server
 
 Let began with hello_ansible to understand the ansible command and then after hello_client.  Because loading ansible on every server and logging in them locally is not what we signed up for right.  :)
 
-* [hello_ansible](labs/0.hello_ansible/README.md)
-* [hello_client](labs/1.hello_client/README.md)
-* [hello_inventory](labs/2.hello_inventory/README.md)
-* [hello_yum](labs/3.hello_yum/README.md)
-* [hello_yum_vars](labs/4.hello_yum_vars/README.md)
-* [hello_yum_vars_list](labs/5.hello_yum_vars_list/README.md)
-* [hello_user](labs/6.hello_user/README.md)
-* [hello_user_key](labs/7.hello_user_key/README.md)
+* [Lab0_hello_ansible](labs/0.hello_ansible/README.md)
+* [Lab1_hello_client](labs/1.hello_client/README.md)
+* [Lab2_hello_inventory](labs/2.hello_inventory/README.md)
+* [Lab3_hello_yum](labs/3.hello_yum/README.md)
+* [Lab4_hello_yum_vars](labs/4.hello_yum_vars/README.md)
+* [Lab5_hello_yum_vars_list](labs/5.hello_yum_vars_list/README.md)
+* [Lab6_hello_host_vars](labs/5.hello_host_vars/README.md)
 
