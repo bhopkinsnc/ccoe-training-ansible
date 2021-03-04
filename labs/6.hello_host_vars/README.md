@@ -167,7 +167,7 @@ changed: [lab-cent02] => (item=[u'lsof', u'nmap'])
 
 ## Extra Credit
 
-Add a debug task to the playbook using a feature called tags.  Tags allow you to run only the tasks that have been taged that that value. 
+Add a debug task to the playbook using a feature called tags.  Tags allow you to run only the tasks that have been tagged that that value.
 
 ```bash
 [root@ansibleserver playbooks]# vi _lab_hello_host_vars.yml
@@ -205,10 +205,10 @@ Run the playbook calling the "-t debug" to see where the variable that was creat
 ```bash
 TASK [debug message] ********************************************************************************************************
 ok: [lab-cent01] => {
-    "msg": "inventoryfile_cent01"
+    "msg": "inventoryfile_host-cent01"
 }
 ok: [lab-cent02] => {
-    "msg": "inventoryfile_cent02"
+    "msg": "inventoryfile_host-cent02"
 ```
 
 If you look in the inventory file there are vars listed on the host line.
@@ -219,13 +219,13 @@ If you look in the inventory file there are vars listed on the host line.
 
 ```ini
 [lab-cent]
-lab-cent01 debug_msg=inventoryfile_cent01
-lab-cent02 debug_msg=inventoryfile_cent02
+lab-cent01 debug_msg=inventoryfile_host-cent01
+lab-cent02 debug_msg=inventoryfile_host-cent02
 ```
 
 Add another file to the lab-cent02 system.  
 
-> More that one file can be added to a directory. And it can be named anything just make sure it ends with .yml or .json.  
+> More than one file can be added to a directory. And it can be named anything just make sure it ends with .yml or .json.  
 
 ```bash
 [root@ansibleserver playbooks]# vi inventory/host_vars/lab-cent02/_lab_debug.yml
@@ -244,7 +244,7 @@ debug_msg: host_vars_dir_file-cent02
 ```bash
 TASK [debug message] ********************************************************************************************************
 ok: [lab-cent01] => {
-    "msg": "inventoryfile_cent01"
+    "msg": "inventoryfile_host-cent01"
 }
 ok: [lab-cent02] => {
     "msg": "host_vars_dir_file-cent02"

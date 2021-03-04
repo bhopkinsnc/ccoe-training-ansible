@@ -234,7 +234,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#unde
 Take-away: if you are going to use variables in your inventory files then try not to use vars in the playbook because they have precedence.
 
 1. CommandLine Values
-2. Playbook vars
+2. Playbook Vars
 3. Inventory Group_Vars
 
 > NOTE: the ansible website list least to greater with command line the greatest. Above just reversed order.
