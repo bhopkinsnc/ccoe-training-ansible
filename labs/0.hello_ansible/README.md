@@ -2,7 +2,7 @@
 
 ## Lab Setup
 
-*_Prerequsite_*
+*_Prerequisite_*
 
 1. Use Guide to Build Container [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
 
@@ -27,7 +27,7 @@ README.md  hello_world.yml  help  infra_files  inventory  labs  setup
 
 ### Hello Ansible
 
-In the introduction to Ansible a playbook was run.  But what is the differance between ansible-playbook command and ansible command.
+In the introduction to Ansible a playbook was run.  But what is the difference between ansible-playbook command and ansible command.
 
 ### Command ansible-playbook
 
@@ -61,7 +61,7 @@ This same playbook above can also be ran using the command line options.
 
 Ansible command line interface can run ansible modules without having to create a playbook.
 
-The sample below uses the same copy module to create a hello_world_test.txt file with the conent "hello world"
+The sample below uses the same copy module to create a hello_world_test.txt file with the content "hello world"
 
 ```bash
 [root@ansibleserver playbooks]# ansible -c local -i localhost, all -m copy -a 'dest="/tmp/hello_world_test.txt" content="hello world\n"'
@@ -78,9 +78,9 @@ The sample below uses the same copy module to create a hello_world_test.txt file
 
 ```
 
-There are a lot of other options in the ansible command.  Understanding the ansible command is another powerfull tool you will see during this training.
+There are a lot of other options in the ansible command.  Understanding the ansible command is another powerful tool you will see during this training.
 
-Here are the command options from the help -h 
+Here are the command options from the help -h
 
 ```bash
 [root@ansibleserver playbooks]#  ansible -h
@@ -201,7 +201,7 @@ Some modules do not make sense in Ad-Hoc (include, meta, etc)
 
 One last thing:
 
-That same syntext using equals '=' can be used inside an ansible playbook. Crazy right ;)
+That same syntax using equals '=' can be used inside an ansible playbook. Crazy right ;)
 
 ```yaml
 ---

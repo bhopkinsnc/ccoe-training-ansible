@@ -1,8 +1,8 @@
-# Lab Number 0
+# Lab Number 1
 
 ## Lab Setup
 
-*_Prerequsite_*
+*_Prerequisite_*
 
 1. Use Guide to Build Container (centos_ansible) [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
 1. Use Guide to Build Container (centos_keys) [/setup/cntr_centos_keys/README.md](/setup/cntr_centos_keys/README.md)
@@ -33,7 +33,7 @@ SSH password: @nsibleRocks1
 
 The output from the ping will show success.
 
-> NOTE: the ping is NOT an ICMP ping like the host command ping.  An ansible ping connects to the host using the login creds.  When using the ping command in ansible you are verifing network connectivity and login rights to that target host.
+> NOTE: the ping is NOT an ICMP ping like the host command ping.  An ansible ping connects to the host using the login creds.  When using the ping command in ansible you are verifying network connectivity and login rights to that target host.
 
 ```json
 centos02 | SUCCESS => {
@@ -61,7 +61,7 @@ Exit out of ansible server
 
 You are able to connect using a password but that is no fun exit out of the ansibleserver and attach the volume during the next docker run.
 
-This time will be attaching the an ssh directory that has an config file and ssh private key.  The ssh config file is set to a non-root user named "notroot"
+This time will be attaching the ssh directory that has an config file and ssh private key.  The ssh config file is set to a non-root user named "notroot"
 
 ```bash
 docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
@@ -233,7 +233,7 @@ Exit ansible Server
 docker stop cent01 cent02
 ```
 
-Stop conntainers, note that if you did not do the extra credit cent02
+Stop containers note that if you did not do the extra credit cent02
 
 ```bash
 cent01

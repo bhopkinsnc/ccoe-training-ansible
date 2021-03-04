@@ -2,7 +2,7 @@
 
 ## Lab Setup
 
-*_Prerequsite_*
+*_Prerequisite_*
 
 1. Use Guide to Build Container (centos_ansible) [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
 1. Use Guide to Build Container (centos_keys) [/setup/cntr_centos_keys/README.md](/setup/cntr_centos_keys/README.md)
@@ -190,7 +190,7 @@ Run again to delete without the --check to delete.  Think about the --check as a
 
 ## Summary
 
-> During this LAB you have leaned host to use an ansible module like yum to install a package. Then add more pckages using list to loop for more than one package.
+> During this LAB you have leaned host to use an ansible module like yum to install a package. Then add more packages using list to loop for more than one package.
 
 ## Lab Cleanup 
 
@@ -204,7 +204,7 @@ Exit ansible Server
 docker stop cent01 cent02
 ```
 
-Stop conntainers, note that if you did not do the extra credit cent02
+Stop containers note that if you did not do the extra credit cent02
 
 ```bash
 cent01

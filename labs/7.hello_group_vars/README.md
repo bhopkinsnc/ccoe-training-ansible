@@ -2,7 +2,7 @@
 
 ## Lab Setup
 
-*_Prerequsite_*
+*_Prerequisite_*
 
 1. Use Guide to Build Container (centos_ansible) [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
 1. Use Guide to Build Container (centos_keys) [/setup/cntr_centos_keys/README.md](/setup/cntr_centos_keys/README.md)
@@ -47,10 +47,11 @@ User root may run the following commands on cent01:
 
 ## The Lab
 
+This lab will be using group_vars with inventory groups.  Inventory groups are a collection of host in the inventory file.
 
 ## Summary
 
-> During this LAB learned how to use host_vars to create different list of packages that is used by the same playbook.  Also, host inventory files and yaml host files can be used to pass variables to the playbooks. 
+> During this LAB 
 
 ## Lab Cleanup
 
@@ -64,7 +65,7 @@ Exit ansible Server
 docker stop lab-cent01 lab-suse01
 ```
 
-Stop conntainers, note that if you did not do the extra credit cent02.
+Stop containers note that if you did not do the extra credit cent02.
 
 ```bash
 lab-cent01

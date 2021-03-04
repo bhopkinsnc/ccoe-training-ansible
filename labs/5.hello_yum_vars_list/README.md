@@ -2,7 +2,7 @@
 
 ## Lab Setup
 
-*_Prerequsite_*
+*_Prerequisite_*
 
 1. Use Guide to Build Container (centos_ansible) [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
 1. Use Guide to Build Container (centos_keys) [/setup/cntr_centos_keys/README.md](/setup/cntr_centos_keys/README.md)
@@ -48,7 +48,7 @@ User root may run the following commands on cent01:
 
 ### Using ansible yum module to install packages
 
-In the previous examples a varable was used however in that example can only pass one varable to the package. This method will pass a list of files.
+In the previous examples a variable was used however in that example can only pass one vairable to the package. This method will pass a list of files.
 
 ```bash
 [root@ansibleserver playbooks]# vi _lab_hello_yum_vars_list.yml
@@ -106,7 +106,8 @@ Update the playbook to switching to a yum_packages_names var file.
 ```bash
 [root@ansibleserver playbooks]# vi _lab_yum_packages_names_list.yml
 ```
-> NOTE: to create a list in yaml set the name of the list.  In this case it is yum_package_names_list:.  Then make sure two spaces and - then the item in the list.  The format and spaces is important working with yaml. 
+
+> NOTE: to create a list in yaml set the name of the list.  In this case it is yum_package_names_list:.  Then make sure two spaces and - then the item in the list.  The format and spaces are important working with yaml.
 
 ```yaml
 yum_package_names_list:
@@ -222,7 +223,7 @@ What packages got installed. List can be combined from inventory inside of playb
 
 ## Summary
 
-> During this LAB you created var list of files.  A vars file _lab_yum_packages_names_list.yml was created that is passed with the -e on commandline. Add a package to the list and then added a new another server to update two hosts. Multiple variables of list can be combined and used with_items.  
+> During this LAB you created var list of files.  A vars file _lab_yum_packages_names_list.yml was created that is passed with the -e on command line. Add a package to the list and then added a new another server to update two hosts. Multiple variables of list can be combined and used with_items.  
 
 ## Lab Cleanup
 
@@ -236,7 +237,7 @@ Exit ansible Server
 docker stop cent01 cent02
 ```
 
-Stop conntainers, note that if you did not do the extra credit cent02.
+Stop containers note that if you did not do the extra credit cent02.
 
 ```bash
 cent01
