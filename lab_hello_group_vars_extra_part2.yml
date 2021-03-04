@@ -1,0 +1,22 @@
+---
+  - hosts: lab-linux
+    gather_facts: no
+    become: yes
+    become_method: sudo
+     
+    tasks:
+      - name: yum package install
+        yum:
+          name: "{{ item }}"
+          state: present
+        with_items: 
+          - "{{ yum_package_names_list }}"
+
+      - name: yum package install for lab-linux packages
+        yum:
+          name: "{{ item }}"
+          state: present
+        with_items: 
+          - "{{ yum_package_names_list }}"
+        vars:
+         yum_package_names_list: "{{ linux_group_yum_package_names_list }}" 

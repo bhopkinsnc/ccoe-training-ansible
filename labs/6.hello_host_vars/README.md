@@ -205,10 +205,10 @@ Run the playbook calling the "-t debug" to see where the variable that was creat
 ```bash
 TASK [debug message] ********************************************************************************************************
 ok: [lab-cent01] => {
-    "msg": "inventoryfile_cent01"
+    "msg": "inventoryfile_host-cent01"
 }
 ok: [lab-cent02] => {
-    "msg": "inventoryfile_cent02"
+    "msg": "inventoryfile_host-cent02"
 ```
 
 If you look in the inventory file there are vars listed on the host line.
@@ -219,8 +219,8 @@ If you look in the inventory file there are vars listed on the host line.
 
 ```ini
 [lab-cent]
-lab-cent01 debug_msg=inventoryfile_cent01
-lab-cent02 debug_msg=inventoryfile_cent02
+lab-cent01 debug_msg=inventoryfile_host-cent01
+lab-cent02 debug_msg=inventoryfile_host-cent02
 ```
 
 Add another file to the lab-cent02 system.  
@@ -244,7 +244,7 @@ debug_msg: host_vars_dir_file-cent02
 ```bash
 TASK [debug message] ********************************************************************************************************
 ok: [lab-cent01] => {
-    "msg": "inventoryfile_cent01"
+    "msg": "inventoryfile_host-cent01"
 }
 ok: [lab-cent02] => {
     "msg": "host_vars_dir_file-cent02"
