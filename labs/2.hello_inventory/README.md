@@ -2,7 +2,7 @@
 
 ## Lab Setup
 
-*_Prerequsite_*
+*_Prerequisite_*
 
 1. Use Guide to Build Container (centos_ansible) [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
 1. Use Guide to Build Container (centos_keys) [/setup/cntr_centos_keys/README.md](/setup/cntr_centos_keys/README.md)
@@ -52,7 +52,7 @@ cent01 | SUCCESS => {
 
 ### Setup Inventory INI 
 
-We have only targeted two host cent01 and cent02.  What if you have a lot of servers that are different versions are operating systems. Inventory files will save the day.  There are two formats for inventory files ini and yaml.  We will be using the ini format in the labs because of there simplicity.
+We have only targeted two host cent01 and cent02.  What if you have a lot of servers that are different versions are operating systems. Inventory files will save the day.  There are two formats for inventory files ini and yaml.  We will be using the ini format in the labs because of their simplicity.
 
 An inventory file has already been created so this in just an introduction to them to get you ready for future labs.
 
@@ -88,7 +88,7 @@ cent02
 
 This file hast two groups one for the centOS servers and the other for SUSE servers. 
 
-Lets see how this works using the ping command.
+Let's see how this works using the ping command.
 
 Above you checked ping using the -i cent01,cent02, but lets use the inventory file now.
 
@@ -133,7 +133,7 @@ cent01 | SUCCESS => {
 
 ### Inventory Groups
 
-Lets build some suse systems by closing the ansible session and on the docker workstation build some suse docker images and runing them.
+Lets build some suse systems by closing the ansible session and on the docker workstation build some suse docker images and running them.
 
 ```bash
 [root@ansibleserver playbooks]# exit
@@ -229,7 +229,7 @@ suse01 | SUCCESS => {
 
 Host groups are cool but lets get an idea how that can be used.
 
-let look at the ansible command and focus on the 'all' in the commmand after the inventory file.  What is all? That is a builtin default group for all host. However what if it is changed to cent. 
+let look at the ansible command and focus on the 'all' in the command after the inventory file.  What is all? That is a built-in default group for all host. However, what if it is changed to cent. 
 
 ```bash
 [root@ansibleserver playbooks]# ansible -i inventory/cent_suse_hosts.ini cent -m ping 
@@ -273,7 +273,7 @@ suse01 | SUCCESS => {
 }
 ```
 
-In a playbook the all is at the hosts section by changing the all to cent or suse would only run the host listed in the inventory file.
+ Changing hosts section the playbook from "all" to "cent" or "suse" will only run the host listed in the inventory file.
 
 ```yaml
 ---
@@ -284,7 +284,7 @@ In a playbook the all is at the hosts section by changing the all to cent or sus
 
 ## Summary
 
-> During this LAB you have learned about inventory files and groups. The all group is always there but creating groups help orginize your inventory.  See https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html 
+> During this LAB you have learned about inventory files and groups. The all group is always there but creating groups help organize your inventory.  See https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html 
 
 
 ## Lab Cleanup 
@@ -299,7 +299,7 @@ Exit ansible Server
 docker stop cent01 cent02 suse01
 ```
 
-Stop conntainers, note that if you did not do the extra credit cent02
+Stop containers note that if you did not do the extra credit cent02
 
 ```bash
 cent01

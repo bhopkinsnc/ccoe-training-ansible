@@ -2,7 +2,7 @@
 
 ## Lab Setup
 
-*_Prerequsite_*
+*_Prerequisite_*
 
 1. Use Guide to Build Container (centos_ansible) [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
 1. Use Guide to Build Container (centos_keys) [/setup/cntr_centos_keys/README.md](/setup/cntr_centos_keys/README.md)
@@ -65,7 +65,7 @@ If the package is already installed remove it before next step.
 [root@ansibleserver playbooks]# ansible -i cent01, all -m yum -a "name=rsync state=absent" -b --become-method=sudo
 ```
 
-> NOTE: During this lab if you need to startover can use the command above to remove a package or just stop/start the docker container.
+> NOTE: During this lab if you need to start-over can use the command above to remove a package or just stop/start the docker container.
 
 Use vi or nano to create _lab_hello_yum.yml file
 
@@ -172,7 +172,7 @@ The finished playbook should look like below.
            state: present
 ```
 
-Run the ansible playbook the "lsof" package will get loaded not the "nmap" that is asigned to the yum_package_name var from the inv file.
+Run the ansible playbook the "lsof" package will get loaded not the "nmap" that is assigned to the yum_package_name var from the inv file.
 
 ```bash
 [root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml 
@@ -191,7 +191,7 @@ lsof-4.87-6.el7.x86_64
 
 ### Change the package in Inventory File
 
-Lets say you want to change the package that you want to load. Where do you change it? Let's try to change the package name in the inventory file. 
+Let's say you want to change the package that you want to load. Where do you change it? Let's try to change the package name in the inventory file. 
 
 ```bash
 [root@ansibleserver playbooks]# vi _lab_hello_clients.ini
@@ -223,11 +223,11 @@ To add another package can run the command again with a different name on the co
 [root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini _lab_hello_yum_vars.yml -e yum_package_name=mutt -v
 ```
 
-What package got installed answer (mutt). Why because passing vars at commandline has precedences over inventory files are playbooks.
+What package got installed answer (mutt). Why because passing vars at command line has precedences's over inventory files are playbooks.
 
 ## Summary
 
-> During this LAB you have leaned how to pass vars using three different methods (commandline,inventoryfile, playbook) host to use an ansible module like yum to install a package. Then add more pckages using list to loop for more than one package.  There is an order that variables are pulled from inventory 
+> During this LAB you have leaned how to pass vars using three different methods (commandline,inventoryfile, playbook) host to use an ansible module like yum to install a package. Then add more packages using list to loop for more than one package.  There is an order that variables are pulled from inventory
 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
 
@@ -237,7 +237,7 @@ Take-away: if you are going to use variables in your inventory files then try no
 2. Playbook vars
 3. Inventory Group_Vars
 
-> NOTE: the ansible website list least to greater with commandline the greatest. Above just reversed order.
+> NOTE: the ansible website list least to greater with command line the greatest. Above just reversed order.
 
 ## Lab Cleanup
 
@@ -251,7 +251,7 @@ Exit ansible Server
 docker stop cent01
 ```
 
-Stop conntainers, note that if you did not do the extra credit cent02
+Stop containers note that if you did not do the extra credit cent02
 
 ```bash
 cent01

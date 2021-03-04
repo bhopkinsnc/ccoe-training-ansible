@@ -2,7 +2,7 @@
 
 ## Lab Setup
 
-*_Prerequsite_*
+*_Prerequisite_*
 
 1. Use Guide to Build Container (centos_ansible) [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
 1. Use Guide to Build Container (centos_keys) [/setup/cntr_centos_keys/README.md](/setup/cntr_centos_keys/README.md)
@@ -279,7 +279,7 @@ Exit ansible Server
 docker stop lab-cent01 lab-cent02
 ```
 
-Stop conntainers, note that if you did not do the extra credit cent02.
+Stop containers note that if you did not do the extra credit cent02.
 
 ```bash
 lab-cent01
