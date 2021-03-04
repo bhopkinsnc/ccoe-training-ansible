@@ -96,8 +96,6 @@ The last lab worked with vars assigned to a host in host_vars or inventory file.
        - name: debug message
          debug:
            msg: "{{ debug_msg }}"
-         tags:
-           - debug
 
 ```
 
@@ -131,7 +129,10 @@ Make group_vars directory for the group lab-suse
 
 ```yaml
 ---
+
 debug_msg: group_vars_dir_file-lab-suse
+
+....
 ```
 
 ```bash
@@ -329,7 +330,7 @@ changed: [lab-cent03] => (item=[u'vim'])
 
 Notice that the install for cent03 add vim but did not list nano.  What happen should it have done both?  
 
-Cent is a child of lab-linux group so it will pull the package from its base group before a children group. 
+Cent is a child of lab-linux group so it will pull the package from its base group before a children group.
 
 Lets add the last package for suse team.
 
@@ -422,7 +423,7 @@ Exit ansible Server
 ```
 
 ```bash
-docker stop lab-cent02 lab-suse02
+docker stop lab-cent02 lab-suse02 lab-cent03 lab-suse03
 ```
 
 Stop containers note that if you did not do the extra credit cent02.
@@ -430,11 +431,13 @@ Stop containers note that if you did not do the extra credit cent02.
 ```bash
 lab-cent02
 lab-suse02
+lab-cent03
+lab-suse03
 ```
 
 What's next learn about connecting to an external client
 
-* [hello_host_vars](../7.hello_group_vars/README.md)
+* [hello_user](../8.hello_user/README.md)
 
 or
 
