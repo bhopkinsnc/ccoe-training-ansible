@@ -1,0 +1,14 @@
+---
+   - hosts: all 
+     gather_facts: no
+     become: yes
+     become_method: sudo
+
+     vars:
+       yum_package_name: lsof
+
+     tasks:
+       - name: yum package install
+         yum:
+           name: "{{ yum_package_name }}"
+           state: present

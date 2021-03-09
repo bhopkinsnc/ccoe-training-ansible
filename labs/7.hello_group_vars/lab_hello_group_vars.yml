@@ -1,0 +1,12 @@
+---
+   - hosts: lab-linux
+     gather_facts: no
+     become: yes
+     become_method: sudo
+     
+     tasks:
+       - name: debug message
+         debug:
+           msg: "{{ debug_msg }}"
+         tags:
+           - debug

@@ -137,6 +137,17 @@ Check if package is installed from the inventory file.
 [root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep nmap'
 ```
 
+> GET BACK ON TRACK:
+
+Run if having issues with the above lab.
+
+Copy INI file or Playbook as needed
+
+```bash
+[root@ansibleserver playbooks]# cp labs/4.hello_yum_vars/_lab_hello_clients.ini _lab_hello_clients.ini
+[root@ansibleserver playbooks]# cp labs/4.hello_yum_vars/lab_hello_yum_vars.yml _lab_hello_yum_vars.yml
+```
+
 ## Vars in Playbook
 
 Use vi or nano to edit _lab_hello_yum.yml file adding a vars to the playbook.
@@ -189,6 +200,15 @@ cent01 | CHANGED | rc=0 >>
 lsof-4.87-6.el7.x86_64
 ```
 
+> GET BACK ON TRACK:
+
+Run if having issues with the above lab.
+
+```bash
+[root@ansibleserver playbooks]# cp labs/4.hello_yum_vars/lab_hello_yum_vars_vars.yml _lab_hello_yum_vars.yml
+[root@ansibleserver playbooks]# ansible-playbook -i _lab_hello_clients.ini lab_hello_yum_vars.yml 
+```
+
 ### Change the package in Inventory File
 
 Let's say you want to change the package that you want to load. Where do you change it? Let's try to change the package name in the inventory file. 
@@ -212,6 +232,14 @@ yum_package_name=mutt
 ```
 
 What package was loaded the one in the inventory file or in the playbook and why?
+
+> GET BACK ON TRACK:
+
+Run if having issues with the above lab.
+
+```bash
+[root@ansibleserver playbooks]# cp labs/4.hello_yum_vars/lab_hello_yum_vars.yml _lab_hello_yum_vars.yml
+```
 
 ## Extra Credit
 

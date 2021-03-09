@@ -116,7 +116,7 @@ Host *
 Test sudo access 
 
 ```bash
-ansible -i cent01, all --become -m shell -a 'sudo -l'
+[root@ansibleserver playbooks]# ansible -i cent01, all --become -m shell -a 'sudo -l'
 ```
 
 ```bash

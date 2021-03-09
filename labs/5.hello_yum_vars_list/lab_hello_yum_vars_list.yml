@@ -1,0 +1,18 @@
+---
+   - hosts: all
+     gather_facts: no
+     become: yes
+     become_method: sudo
+     
+     vars:
+       yum_package_names_list_vars: 
+         - vim
+         - nano
+
+     tasks:
+       - name: yum package install
+         yum:
+           name: "{{ item }}"
+           state: present
+         with_items: 
+           - "{{ yum_package_names_list }}"
