@@ -1,0 +1,31 @@
+---
+   - hosts: all 
+     gather_facts: no
+     become: yes
+     become_method: sudo
+
+     tasks:
+       - name: add group
+         group:
+           name: lxadmins00
+           gid: 7000
+           state: present
+
+       - name: add users
+         user:
+           name: lxadmin00
+           shell: /bin/bash
+           comment: "Linux Admin 00"
+           uid: 7000
+           group: 7000
+           groups: 7000
+           state: present
+
+       - name: add sudoers
+         copy:
+           dest: /etc/sudoers.d/lxadmin00
+           content: "lxadmin00 ALL=(ALL) NOPASSWD: ALL"
+           owner: root
+           group: root
+           mode: '0440'
+           validate: /usr/sbin/visudo -cf %s
