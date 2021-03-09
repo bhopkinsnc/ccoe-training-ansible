@@ -264,4 +264,4 @@ Let began with hello_ansible to understand the ansible command and then after he
 * [Lab5_hello_yum_vars_list](labs/5.hello_yum_vars_list/README.md)
 * [Lab6_hello_host_vars](labs/5.hello_host_vars/README.md)
 * [Lab7_hello_group_vars](labs/7.hello_group_vars/README.md)
-
+* [Lab8_hello_user](labs/8.hello_user/README.md)
