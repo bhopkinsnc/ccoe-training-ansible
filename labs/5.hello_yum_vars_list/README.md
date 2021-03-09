@@ -101,7 +101,7 @@ Update the playbook to switching to a yum_packages_names var file.
            - "{{ yum_package_names_list }}"
 ```
 
-## Create Inventory file
+## Create Package List Yaml file
 
 ```bash
 [root@ansibleserver playbooks]# vi _lab_yum_packages_names_list.yml
@@ -124,6 +124,15 @@ Run to install packages from list file passwd at the command line.  The var_pack
 ```
 
 You should see not change because a list is a list weather it is from a vars file or a list inside the playbook.
+
+> GET BACK ON TRACK:
+
+Run if having issues with the above lab cp files and retry.
+
+```bash
+[root@ansibleserver playbooks]# cp labs/5.hello_yum_vars_list/lab_yum_packages_names_list.yml lab_yum_packages_names_list.yml
+[root@ansibleserver playbooks]# cp labs/5.hello_yum_vars_list/lab_hello_yum_vars_list.yml _lab_hello_yum_vars_list.yml
+```
 
 ## Add another package to list
 

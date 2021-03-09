@@ -1,0 +1,4 @@
+yum_package_names_list:
+  - rsync 
+  - mutt
+  - nmap

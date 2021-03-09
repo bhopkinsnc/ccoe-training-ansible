@@ -138,6 +138,14 @@ yum:
    - namp
 ```
 
+> GET BACK ON TRACK:
+
+Run if having issues with the above lab.
+
+```bash
+[root@ansibleserver playbooks]# ansible-playbook -i cent01, labs/3.hello_yum/lab_hello_yum.yml
+```
+
 ### Extra Credit 
 
 Exit out of ansible server to start another docker container.
@@ -182,7 +190,7 @@ The --check command will show that it will delete the packages
 
 Run again to delete without the --check to delete.  Think about the --check as a way to see what the playbook will do.  
 
-> NOTE: not all ansible module can support --check 
+> NOTE: not all ansible module can support --check
 
 ```bash
 [root@ansibleserver playbooks]# ansible-playbook -i inventory/cent_hosts.ini _lab_hello_yum.yml -v
@@ -192,7 +200,7 @@ Run again to delete without the --check to delete.  Think about the --check as a
 
 > During this LAB you have leaned host to use an ansible module like yum to install a package. Then add more packages using list to loop for more than one package.
 
-## Lab Cleanup 
+## Lab Cleanup
 
 Exit ansible Server
 
