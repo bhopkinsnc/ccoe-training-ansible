@@ -1,0 +1,7 @@
+addgroups:
+  groot:
+    gid: 1234
+    state: present
+  gunix:
+    gid: 5678
+    state: present

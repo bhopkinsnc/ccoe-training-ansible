@@ -1,0 +1,32 @@
+with_list_names:
+  - [ one, two, three ]
+with_list_numbers:
+  - [ 1, 2 ]
+
+with_list_all:
+- 
+  - one
+  - two
+  - three 
+- 
+  - 1
+  - 2
+
+with_item_names:
+  - itemname: one 
+  - itemname: two
+  - itemname: three
+
+with_item_numbers:
+  - itemnumber: 1 
+  - itemnumber: 2
+
+with_dict:
+  name:
+    value1: one
+    value2: two
+    value3: three
+  number:
+    value1: 1
+    value2: 2
+  
