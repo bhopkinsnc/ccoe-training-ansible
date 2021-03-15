@@ -46,7 +46,7 @@ About the docker container. The container named with ansibleserver (--name) with
 The command to run Docker
 
 ```bash
-docker run --rm -it -h ansibleserver --name ansibleserver -v $"{PWD}:/ansible/playbooks" centos_ansible bash
+docker run --rm -it -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" centos_ansible bash
 ```
 
 The continer should start you will be in the /ansible/playbooks working directory which is the same directory in the repo

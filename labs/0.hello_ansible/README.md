@@ -13,7 +13,7 @@ Change directory back so that your current working directory is inside of ccoe-t
 Container ansibleserver (centos_ansible)
 
 ```bash
-docker run --rm -it -h ansibleserver --name ansibleserver -v $"{PWD}:/ansible/playbooks" centos_ansible bash
+docker run --rm -it -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" centos_ansible bash
 ```
 
 Ensure you are in the container
