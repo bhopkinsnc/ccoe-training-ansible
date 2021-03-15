@@ -17,7 +17,7 @@ docker run --rm -dP --network=ansible-training -h cent01 --name cent01 centos_ke
 ```
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh_config:/root/.ssh/config centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v $"{PWD}:/ansible/playbooks" -v $"{PWD}/infra_files/ssh_config:/root/.ssh/config" centos_ansible:latest bash
 ```
 
 ## The Lab
@@ -64,7 +64,7 @@ You are able to connect using a password but that is no fun exit out of the ansi
 This time will be attaching the ssh directory that has an config file and ssh private key.  The ssh config file is set to a non-root user named "notroot"
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v $"{PWD}:/ansible/playbooks" -v $"{PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
 ```
 
 ```bash
@@ -191,7 +191,7 @@ docker run --rm -dP --network=ansible-training -h cent02 --name cent02 centos_ke
 Start the Ansible Server
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v $"{PWD}:/ansible/playbooks" -v $"{PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
 ```
 
 Run the playbook again but add in the command the new server cent02 (-i cent01,cent02, )
