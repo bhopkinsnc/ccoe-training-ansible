@@ -18,7 +18,7 @@ docker run --rm -dP --network=ansible-training -h lab8-suse01 --name lab8-suse01
 ```
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" -v "${PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
 ```
 
 Remove lab8 all file if exists.

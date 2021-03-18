@@ -17,7 +17,7 @@ docker run --rm -dP --network=ansible-training -h cent01 --name cent01 centos_ke
 ```
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" -v "${PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
 ```
 
 ## Verify Access with SUDO
@@ -163,7 +163,7 @@ docker run --rm -dP --network=ansible-training -h cent02 --name cent02 centos_ke
 Start the ansible workstation
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" -v $"{PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
 ```
 
 Use the same playbook but this time use the inventory file which has both cent01 and cent02 listed in the cent group.
@@ -199,6 +199,15 @@ Run again to delete without the --check to delete.  Think about the --check as a
 ## Summary
 
 > During this LAB you have leaned host to use an ansible module like yum to install a package. Then add more packages using list to loop for more than one package.
+
+Ansible uses modules like yum to perform tasks. Ansible has many modules that can perform tasks for servers and devices. 
+
+https://docs.ansible.com/ansible/2.9/modules/yum_module.html#yum-module
+
+Full list of ansible modules 
+
+https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html
+
 
 ## Lab Cleanup
 

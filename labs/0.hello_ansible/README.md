@@ -13,7 +13,7 @@ Change directory back so that your current working directory is inside of ccoe-t
 Container ansibleserver (centos_ansible)
 
 ```bash
-docker run --rm -it -h ansibleserver --name ansibleserver -v $(PWD):/ansible/playbooks centos_ansible bash
+docker run --rm -it -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" centos_ansible bash
 ```
 
 Ensure you are in the container
@@ -29,7 +29,7 @@ README.md  hello_world.yml  help  infra_files  inventory  labs  setup
 
 In the introduction to Ansible a playbook was run.  But what is the difference between ansible-playbook command and ansible command.
 
-### Command ansible-playbook
+### What is a playbook
 
 Let's review the first playbook setup again.
 
@@ -56,6 +56,8 @@ Let's review the first playbook setup again.
 * Line8 content: "hello world\n" What is in the file
 
 This same playbook above can also be ran using the command line options.
+
+Referance: 
 
 ### Command ansible
 

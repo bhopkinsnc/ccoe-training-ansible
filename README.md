@@ -2,6 +2,10 @@
 
 The following is a training guide for ansible.  The guide requires some knowledge of GIT repository and Docker containers. Before begining please ensure you have your local enviorment setup to support this training course.
 
+## What is ansible
+
+Ansible is an open-source provisioning, configuration management, and deployment tool. A declarative language playbook writen in yaml describes system configuration. A controlling ansbile connects to target host using ssh for unix/linux or winrm for windows.  No agents are required on the target host using native python libarys to run the scripts. Resource: https://docs.ansible.com/ansible/latest/index.html 
+
 ## List of Prerequisite
 
 1. GIT Client and Rights to Pull From Repo
@@ -17,7 +21,7 @@ Clone THIS Repo on to your workstation that you will be using that has docker in
 https://VF-Cloud@dev.azure.com/VF-Cloud/vf_cloud_core/_git/ccoe-training-ansible
 
 
-## Build Docker Container 
+## Build Docker Container
 
 1. Use Guide to Build Container (centos_ansible) [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
 
@@ -39,8 +43,10 @@ LINUX Start the container
 
 About the docker container. The container named with ansibleserver (--name) with the same hostname (-h) will be used during the training. The container runs in interactive mode (-it ) and is destroyed/removed (--rm) when it is stopped or exited.
 
+The command to run Docker
+
 ```bash
-docker run --rm -it -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks centos_ansible bash
+docker run --rm -it -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" centos_ansible bash
 ```
 
 The continer should start you will be in the /ansible/playbooks working directory which is the same directory in the repo
@@ -244,7 +250,7 @@ Change the file again then run with the --check options.
 
 What did or did not happen?????
 
-## Lab Cleanup 
+## Lab Cleanup
 
 Exit ansible Server
 

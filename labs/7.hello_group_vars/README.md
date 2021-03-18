@@ -6,6 +6,8 @@
 
 1. Use Guide to Build Container (centos_ansible) [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
 1. Use Guide to Build Container (centos_keys) [/setup/cntr_centos_keys/README.md](/setup/cntr_centos_keys/README.md)
+1. Use Guide to Build Container (suseos_keys) [/setup/cntr_centos_keys/README.md](/setup/cntr_opensuse_keys/README.md)
+s
 1. Create Docker Network (ansible-network) [/setup/docker_network/README.md](/setup/docker_network/README.md)
 
 ## Start Hosts
@@ -18,7 +20,7 @@ docker run --rm -dP --network=ansible-training -h lab-suse02 --name lab-suse02 s
 ```
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" -v "${PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
 ```
 
 ## Verify Access with SUDO
@@ -168,7 +170,7 @@ docker run --rm -dP --network=ansible-training -h lab-suse03 --name lab-suse03 c
 Restart ansible docker container
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" -v "${PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
 ```
 
 Use a new inventory file that has cent03 added

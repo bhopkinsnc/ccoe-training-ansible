@@ -18,7 +18,7 @@ docker run --rm -dP --network=ansible-training -h lab-cent02 --name lab-cent02 c
 ```
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v ${PWD}:/ansible/playbooks -v ${PWD}/infra_files/ssh:/root/.ssh centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" -v "${PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
 ```
 
 ## Verify Access with SUDO
