@@ -200,6 +200,15 @@ Run again to delete without the --check to delete.  Think about the --check as a
 
 > During this LAB you have leaned host to use an ansible module like yum to install a package. Then add more packages using list to loop for more than one package.
 
+Ansible uses modules like yum to perform tasks. Ansible has many modules that can perform tasks for servers and devices. 
+
+https://docs.ansible.com/ansible/2.9/modules/yum_module.html#yum-module
+
+Full list of ansible modules 
+
+https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html
+
+
 ## Lab Cleanup
 
 Exit ansible Server

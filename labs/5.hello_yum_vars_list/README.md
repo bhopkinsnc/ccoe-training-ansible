@@ -234,6 +234,10 @@ What packages got installed. List can be combined from inventory inside of playb
 
 > During this LAB you created var list of files.  A vars file _lab_yum_packages_names_list.yml was created that is passed with the -e on command line. Add a package to the list and then added a new another server to update two hosts. Multiple variables of list can be combined and used with_items.  
 
+For more information on lists.
+
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#list-variables
+
 ## Lab Cleanup
 
 Exit ansible Server

@@ -64,7 +64,13 @@ You are able to connect using a password but that is no fun exit out of the ansi
 This time will be attaching the ssh directory that has an config file and ssh private key.  The ssh config file is set to a non-root user named "notroot"
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v $"{PWD}:/ansible/playbooks" -v $"{PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" -v "${PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
+```
+
+Change mod of file
+
+```bash
+chmod 600 /root/.ssh/id_rsa
 ```
 
 ```bash

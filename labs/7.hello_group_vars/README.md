@@ -6,6 +6,8 @@
 
 1. Use Guide to Build Container (centos_ansible) [/setup/cntr_centos_ansible/README.md](/setup/cntr_centos_ansible/README.md)
 1. Use Guide to Build Container (centos_keys) [/setup/cntr_centos_keys/README.md](/setup/cntr_centos_keys/README.md)
+1. Use Guide to Build Container (suseos_keys) [/setup/cntr_centos_keys/README.md](/setup/cntr_opensuse_keys/README.md)
+s
 1. Create Docker Network (ansible-network) [/setup/docker_network/README.md](/setup/docker_network/README.md)
 
 ## Start Hosts
