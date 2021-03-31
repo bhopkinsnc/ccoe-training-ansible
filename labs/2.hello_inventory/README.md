@@ -73,7 +73,7 @@ The [cent] is the group the belong to
 For example cat out this file 
 
 ```bash
-[root@ansibleserver playbooks]# cat inventory/cent_suse.ini 
+[root@ansibleserver playbooks]# cat inventory/cent_suse_hosts.ini 
 ```
 
 ```ini
