@@ -86,11 +86,17 @@ cent01
 cent02
 ```
 
-This file hast two groups one for the centOS servers and the other for SUSE servers. 
+This file hast two groups one for the CentOS [cent] servers and the other group for SUSE [suse] servers. 
 
 Let's see how this works using the ping command.
 
 Above you checked ping using the -i cent01,cent02, but lets use the inventory file now.
+
+```bash
+[root@ansibleserver playbooks]# ansible -i cent01,cent02, all -m ping 
+```
+
+The above is the same as using the inventory file below.
 
 ```bash
 [root@ansibleserver playbooks]# ansible -i inventory/cent_hosts.ini all -m ping 
@@ -148,7 +154,7 @@ docker run --rm -dP --network=ansible-training -h suse01 --name suse01 centos_ke
 ```
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v $"{PWD}:/ansible/playbooks" -v $"{PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" -v "${PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
 ```
 
 Now lets use the inventory file that has both cent and suse.  
