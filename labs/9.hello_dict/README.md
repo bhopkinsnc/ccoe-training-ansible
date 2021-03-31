@@ -13,7 +13,7 @@
 Change directory back so that your current working directory is inside of ccoe-training-ansible repo.
 
 ```bash
-docker run --rm -dP --network=ansible-training -h lab9-cent01 --name lab9-cent01 centos_key
+docker run --rm -dP --network=ansible-training -h lab9-cent01 --name lab9-cent01 centos_keys
 ```
 
 ```bash
@@ -34,7 +34,7 @@ docker run --rm -it --network=ansible-training -h ansibleserver --name ansiblese
 Test sudo access
 
 ```bash
-[root@ansibleserver playbooks]# ansible -i lab-cent01, all --become -m shell -a 'sudo -l'
+[root@ansibleserver playbooks]# ansible -i lab9-cent01, all --become -m shell -a 'sudo -l'
 ```
 
 Notice the rights listed for this user.  
@@ -51,7 +51,11 @@ Review
 
 List
 
-Inside of groups vars for lab 9 is a file named user_groups.yml.  This file contains a list of groups that need to be added. 
+Inside of the host inventory groups_vars directory for lab 9 there is a file named user_groups.yml.  This file contains a list of groups that need to be added. 
+
+```bash
+[root@ansibleserver playbooks]# cat inventory/group_vars/lab9/user_groups.yml
+```
 
 ```yaml
 addgroups:

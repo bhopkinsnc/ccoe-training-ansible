@@ -70,7 +70,7 @@ docker run --rm -it --network=ansible-training -h ansibleserver --name ansiblese
 Change mod of file
 
 ```bash
-chmod 600 /root/.ssh/id_rsa
+[root@ansibleserver playbooks]# chmod 600 /root/.ssh/id_rsa
 ```
 
 ```bash
