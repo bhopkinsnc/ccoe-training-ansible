@@ -197,7 +197,7 @@ docker run --rm -dP --network=ansible-training -h cent02 --name cent02 centos_ke
 Start the Ansible Server
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v $"{PWD}:/ansible/playbooks" -v $"{PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" -v "${PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
 ```
 
 Run the playbook again but add in the command the new server cent02 (-i cent01,cent02, )

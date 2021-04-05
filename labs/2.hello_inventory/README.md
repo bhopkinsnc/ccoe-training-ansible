@@ -202,7 +202,9 @@ suse01 | SUCCESS => {
 You will see that the suse02 is not reachable you have two options. 
 
     1. remove from inventory file
-    1. exclude from run on command line with -l '!host_name'
+    2. exclude from run on command line with -l '!host_name' 
+
+> NOTE: The "!" before the hostname when using the --limit command with exclude the host
 
 ```bash
 [root@ansibleserver playbooks]# ansible -i inventory/cent_suse_hosts.ini all -m ping -l '!suse02'
@@ -291,7 +293,7 @@ suse01 | SUCCESS => {
 
 ## Summary
 
-> During this LAB you have learned about inventory files and groups. The all group is always there but creating groups help organize your inventory.  See https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html 
+> During this LAB you have learned about inventory files and groups. The all group is always there but creating groups help organize your inventory.  Also, learned host to use limits to exclude a hosts listed in the inventory file without having to edit the inventory file. See https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html 
 
 
 ## Lab Cleanup 
