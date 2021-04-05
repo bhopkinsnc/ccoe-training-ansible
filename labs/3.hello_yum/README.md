@@ -79,6 +79,15 @@ Before you run the playbook lets check if the package is installed.
 [root@ansibleserver playbooks]# ansible -i cent01, all -m shell -a 'rpm -qa | grep rsync'
 ```
 
+Below will show it will it is not installed
+
+```bash
+[WARNING]: Consider using the yum, dnf or zypper module rather than running 'rpm'.  If you need to use command because yum, dnf or zypper is insufficient you can add 'warn: false'
+to this command task or set 'command_warnings=False' in ansible.cfg to get rid of this message.
+cent01 | FAILED | rc=1 >>
+non-zero return code
+```
+
 Run new playbook created to install git package using yum package manager.
 
 ```bash
@@ -163,7 +172,7 @@ docker run --rm -dP --network=ansible-training -h cent02 --name cent02 centos_ke
 Start the ansible workstation
 
 ```bash
-docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" -v $"{PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
+docker run --rm -it --network=ansible-training -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" -v "${PWD}/infra_files/ssh:/root/.ssh" centos_ansible:latest bash
 ```
 
 Use the same playbook but this time use the inventory file which has both cent01 and cent02 listed in the cent group.

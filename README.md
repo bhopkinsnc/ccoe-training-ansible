@@ -1,6 +1,7 @@
 # Introduction
 
-The following is a training guide for ansible.  The guide requires some knowledge of GIT repository and Docker containers. Before begining please ensure you have your local enviorment setup to support this training course.
+The following is a training guide for ansible.  The guide requires some knowledge of GIT repository and Docker containers. Before beginning please ensure you have your local environment setup to support this training course. 
+
 
 ## What is ansible
 
