@@ -9,9 +9,18 @@ Ansible is an open-source provisioning, configuration management, and deployment
 
 ## List of Prerequisite
 
-1. GIT Client and Rights to Pull From Repo
 1. Docker Install and working
-1. Access to Internet
+1. GIT Client and Rights to Pull From Repo
+
+## Enviorment Setup
+
+### Windows Setup
+
+Git commandline: https://gitforwindows.org/
+
+> A good application that helps but not required is MS Visualstudio Code
+https://code.visualstudio.com/download 
+
 
 ## Git Clone Repo
 
@@ -21,6 +30,26 @@ Clone THIS Repo on to your workstation that you will be using that has docker in
 
 https://VF-Cloud@dev.azure.com/VF-Cloud/vf_cloud_core/_git/ccoe-training-ansible
 
+or @ the mirror site
+
+https://github.com/bhopkinsnc/ccoe-training-ansible.git 
+
+EXAMPLE:
+
+```bash
+cd $HOME
+git clone https://github.com/bhopkinsnc/ccoe-training-ansible.git 
+```
+
+> TIP: if you know there are updates you can pull changes using the git commandline
+
+Change into the ccoe-training-ansible directory 
+
+```bash
+git pull
+```
+
+List of git commands see: [help/git_commands.md](help/git_commands.md) 
 
 ## Build Docker Container
 
@@ -44,7 +73,7 @@ LINUX Start the container
 
 About the docker container. The container named with ansibleserver (--name) with the same hostname (-h) will be used during the training. The container runs in interactive mode (-it ) and is destroyed/removed (--rm) when it is stopped or exited.
 
-The command to run Docker
+The command to run Docker in Linux/Mac
 
 ```bash
 docker run --rm -it -h ansibleserver --name ansibleserver -v "${PWD}:/ansible/playbooks" centos_ansible bash

@@ -1,4 +1,4 @@
-## Build Docker Container
+## Check for Docker image
 
 Check if images is already created
 
@@ -11,6 +11,8 @@ REPOSITORY     TAG       IMAGE ID       CREATED        SIZE
 centos_ansible   latest    XXXXXXXXXXXX   1 hours ago   363MB
 ```
 
+## Option 1 Build Docker Container
+
 If not listed create
 
 Change directory into training repo
@@ -19,6 +21,20 @@ Change directory into training repo
 cd setup/cntr_centos_ansible
 docker build -t centos_ansible .
 cd ../..
+```
+
+## Option 2 Pull Container
+
+If not listed from the above commands pull from dockerhub 
+
+```bash
+docker pull bhopkinsnc/centos_ansible
+```
+
+Once it is download change to the same tag as created locally 
+
+```bash
+docker tag bhopkinsnc/centos_ansible centos_ansible
 ```
 
 ## Verify Container 
